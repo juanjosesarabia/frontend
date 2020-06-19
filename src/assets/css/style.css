@@ -1,0 +1,64 @@
+body{
+  background-image: url(../imagenes/fondo.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:antialiased;
+}
+.container #logoInicio{
+  display: flex;
+  margin: 0 auto;
+}
+#logoInicio{
+  width:250px;
+  height:130px;
+}
+
+.login-form{
+  width: 377px;
+  background-color: white;
+  height: 632px;
+ 
+  float: right; 
+  margin-top: -7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.validar{
+  margin-bottom: 0 !important;
+}
+
+
+
+.form-group a:Hover{
+ /*color: #17A2B8; */
+ color: #0a0a0a;
+ text-decoration: underline;
+ transition: 300ms all;
+}
+.input-group-text img{
+  width: 20px;
+  height: 20px; 
+}
+#btn-crearC{
+  font-style: italic;
+  font-size: small;
+}
+.form-group #btn-crearC, .form-group #btn-olvideC{
+ display: flex;
+ justify-content: center;
+}
+
+
+
+.error{
+  font-style: italic;
+  font-size: small;
+  color: red;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}

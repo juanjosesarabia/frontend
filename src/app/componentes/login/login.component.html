@@ -1,0 +1,47 @@
+<div class="login-form">
+    <form #loginForm="ngForm" (ngSubmit)="validarInicio()">
+        <div class="container ">
+            <div class="container  my-5">
+                <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logoInicio">
+            </div>
+
+            <div class=" form-group input-group validar">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <img src="../../assets/iconos/correo.png" alt="Icono correo">
+                    </span>
+                </div>
+                <input type="email" name="correo" class="form-control" placeholder="Correo"   #correo="ngModel" [(ngModel)]="datorForm.correo" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+            </div>
+            <p class="error" *ngIf="!correo.valid && correo.touched"><span>El correo es inválido</span></p>
+            <p class="error" *ngIf="correo.untouched"><span></span></p>
+            <p class="error" *ngIf="correo.valid"><span></span></p>
+
+            <div class="form-group input-group validar">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <img src="../../assets/iconos/contrasena.png" alt="Icono contraseña">
+                    </span>
+                </div>
+                <input type="password" name="contrasena" class="form-control" placeholder="Contraseña" #contrasena="ngModel" [(ngModel)]="datorForm.contrasena" required>
+            </div>
+            <p class="error" *ngIf="!contrasena.valid && contrasena.touched"> <span>La contraseña es obligatoria</span></p>
+            <p class="error" *ngIf="contrasena.untouched"><span></span></p>
+            <p class="error" *ngIf="contrasena.valid"><span></span></p>
+
+            <div class="form-group">
+                <input type="submit" value="Iniciar sesión" class="btn btn-block btn-info" [disabled]="loginForm.invalid">                
+            </div><br>
+
+            <div class="form-group ">
+                <a id="btn-olvideC">¿Has olvidado la contraseña?</a>
+            </div>
+            <div class="form-group ">
+                <a id="btn-crearC">Crear una cuenta</a>
+            </div>
+        </div><br><br><br><br>
+
+
+       
+    </form>
+</div>
