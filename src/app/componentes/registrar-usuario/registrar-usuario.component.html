@@ -1,0 +1,99 @@
+<div class="login-form">
+    <form #crearUsuario="ngForm" (ngSubmit)="registrarUsuario()">
+        <div class="container ">
+            <div class="container">
+                <div class="container  my-5">
+                    <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logoInicio">
+                </div>
+
+                <div class=" form-group input-group validar">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img src="../../assets/iconos/cedula.png" alt="Icono cédula">
+                        </span>
+                    </div>
+                    <input type="number" name="cedula" class="form-control" placeholder="Número de cédula"
+                        #cedula="ngModel" [(ngModel)]="formCrearUsuario.cedula" required pattern="^[0-9]+$">
+                </div>
+                <p class="error" *ngIf="!cedula.valid && cedula.touched"><span>La cédula es inválida</span></p>
+                <p class="error" *ngIf="cedula.untouched ||cedula.valid"><span></span></p>
+                
+
+                <div class=" form-group input-group validar">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img src="../../assets/iconos/nombre.png" alt="Icono usuario">
+                        </span>
+                    </div>
+                    <input type="text" name="name" class="form-control" placeholder="Nombres completos" #name="ngModel"
+                        [(ngModel)]="formCrearUsuario.name" required pattern="^[a-zA-Z ]*$">
+                </div>
+                <p class="error" *ngIf="!name.valid && name.touched"><span>El nombre es inválido</span></p>
+                <p class="error" *ngIf="name.untouched || name.valid"><span></span></p>
+                
+
+                <div class=" form-group input-group validar">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img src="../../assets/iconos/correo.png" alt="Icono correo">
+                        </span>
+                    </div>
+                    <input type="email" name="email" class="form-control" placeholder="Correo" #email="ngModel"
+                        [(ngModel)]="formCrearUsuario.email" required
+                        pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+                </div>
+                <p class="error" *ngIf="!email.valid && email.touched"><span>El correo es inválido</span></p>
+                <p class="error" *ngIf="email.untouched||email.valid"><span></span></p>
+               
+
+                <div class="form-group input-group validar">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img src="../../assets/iconos/contrasena.png" alt="Icono contraseña">
+                        </span>
+                    </div>
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña"
+                        #password="ngModel" [(ngModel)]="formCrearUsuario.password" required>
+                </div>
+                <p class="error" *ngIf="!password.valid && password.touched"> <span>La contraseña es obligatoria</span>
+                </p>
+                <p class="error" *ngIf="password.untouched||password.valid"><span></span></p>
+                
+                <div class="form-group input-group validar">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img src="../../assets/iconos/contrasena.png" alt="Icono contraseña">
+                        </span>
+                    </div>
+                    <input type="password" name="contrasena" class="form-control" placeholder=" Repetir Contraseña"
+                        #contrasena="ngModel" [(ngModel)]="formCrearUsuario.contrasena" required>
+                </div>
+                <p class="error" *ngIf="!contrasena.valid && contrasena.touched"> <span>La comprobación de  contraseña es obligatoria</span>
+                </p>
+                <p class="error" *ngIf="contrasena.untouched ||contrasena.valid"><span></span></p>
+                 <p class="error" *ngIf="contrasena.value!=password.value"><span>Las contraseñas ingresadas no coinciden</span></p>
+               
+
+                <div class="form-group">
+                    <input type="submit" value="CREAR USUARIO" class="btn btn-block " id="crearCuenta"
+                        [disabled]="crearUsuario.invalid">
+                </div><br>
+                <div class="form-group ">
+                    <p id="tenerCuenta">¿Tienes una cuenta? </p>
+                    <a id="btn-crearC" [routerLink]="['/']">Iniciar Sesión</a>
+                </div>
+
+
+            </div>
+            <div class="alert alert-danger" role="alert" id="errorM">
+                {{mensaje}}
+            </div>
+            <div class="alert alert-danger" role="alert" id="exito">
+                {{mensaje}}
+            </div>
+        </div><br><br><br><br>
+
+
+
+    </form>
+</div>
