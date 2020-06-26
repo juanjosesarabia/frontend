@@ -1,12 +1,30 @@
+
+#gif{
+  margin: 0;
+  padding: 0;
+  width:  82px;
+  height: 73px;
+  display: none;
+}
+.gif{
+  margin: 0;
+  padding: 0;
+   display: flex;
+  justify-content: center;
+  
+  
+ }
+ 
 .alert-danger{
  background-color: #DB0D0D;
  color: white;
  font-weight: bold;
  -webkit-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
--moz-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-border-radius: 10px;
-display: none;
+ -moz-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
+ box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
+ border-radius: 10px;
+ display: none; 
+ opacity: 0.7;
 }
 
 #iniciarSesion {
@@ -14,8 +32,8 @@ display: none;
   background-color: #00923F;
   border-color: #00923F;
   -webkit-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
--moz-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
+  box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
 }
 
 
@@ -33,6 +51,7 @@ box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
   #logoInicio{
     width: 164px;
     height: 165px;
+    margin-bottom: 13px !important;
   }
   
   .login-form{
@@ -92,8 +111,8 @@ box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
   
   @media  (max-width: 298px){
     #logoInicio{
-      width: 185px;
-      height: 90px;
+      width: 102px;
+      height: 99px;
     }
     #btn-olvideC{
       font-size: small;
@@ -112,3 +131,27 @@ box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
     border: 1px solid #F8C300;   
    
  }
+
+ input:hover {
+  box-shadow: none;
+  border: 1px solid #F8C300;   
+ 
+}
+
+#containerMayor{
+  position: relative;
+}
+#errorM{
+  position: absolute;
+  left: 35px;
+  top: 142px;
+  z-index: 0;
+  right: 35px;
+  font-size: small;
+}
+
+#title-Inicio{
+      
+  text-align: center;
+  padding-bottom: 0 !important;
+  }

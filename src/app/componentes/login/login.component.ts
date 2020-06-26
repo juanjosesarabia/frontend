@@ -36,18 +36,23 @@ export class LoginComponent implements OnInit {
  
 
   validarInicio(){
+     var gif =document.getElementById("gif");
+        gif.style.display="block";
     if(this.datosForm["email"].length!=0 && this.datosForm["password"].length!=0){
     this._articleService.validarLogin(this.datosForm).subscribe(
 
       response =>{
+        gif.style.display="none";
         if(response.estado=='ok'){
           alert("Acceso concedido");
         }
       },
       error=>{
+          
             this.mensaje=error.error.mensaje;
             var err =document.getElementById("errorM");
              err.style.display="block";
+             gif.style.display="none";
              setTimeout(function(){err.style.display="none";  }, 5000);            
       
       }
