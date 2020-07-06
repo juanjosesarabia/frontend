@@ -1,9 +1,5 @@
 body{
-  background-image: url(../imagenes/fondo2.jpeg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
+  background-color: #f1f3f4;  
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing:antialiased;

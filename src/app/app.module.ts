@@ -8,12 +8,16 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
+import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { ErrorComponent } from './componentes/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrarUsuarioComponent
+    RegistrarUsuarioComponent,
+    DashboardComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

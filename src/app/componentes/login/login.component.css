@@ -1,4 +1,6 @@
-
+.div-contenedor{
+  display: flex;
+}
 #gif{
   margin: 0;
   padding: 0;
@@ -11,8 +13,6 @@
   padding: 0;
    display: flex;
   justify-content: center;
-  
-  
  }
  
 .alert-danger{
@@ -23,8 +23,8 @@
  -moz-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
  box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
  border-radius: 10px;
- display: none; 
- opacity: 0.7;
+ display: none;
+ opacity: 0.8;
 }
 
 #iniciarSesion {
@@ -53,18 +53,26 @@
     height: 165px;
     margin-bottom: 13px !important;
   }
+
+  .div-fondo{
+    background-image: url(../../../assets/imagenes/fondo2.jpeg); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 72%;
+    height: 104vh; 
+  }
   
   .login-form{
-    width: 377px;
+    width: 28%;
     background-color: white;
     overflow: auto;
-    height: 105vh;
-    float: right; 
+    height: 105vh;    
     margin-top: -7px; 
-    -webkit-box-shadow: -6px 1px 12px 0px rgba(39,45,117,0.43);
-    -moz-box-shadow: -6px 1px 12px 0px rgba(39,45,117,0.43);
-    box-shadow: -6px 1px 12px 0px rgba(39,45,117,0.43);
-   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    -webkit-box-shadow: -2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+    -moz-box-shadow:-2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+    box-shadow: -2px 1px 12px 0px rgba(217, 219, 219, 0.9);
   }
   .validar{
     margin-bottom: 0 !important;
@@ -103,9 +111,20 @@
     margin-bottom: 20px;
   }
   
+  @media  (max-width: 1024px){
+    .login-form{   
+      width: 50%;  
+    }
+    .div-fondo{
+      width: 60%;
+    }
+   }
   @media  (max-width: 772px){
    .login-form{   
      width: 100%;  
+   }
+   .div-fondo{
+     display: none;
    }
   }
   
@@ -140,11 +159,12 @@
 
 #containerMayor{
   position: relative;
+ 
 }
 #errorM{
   position: absolute;
   left: 35px;
-  top: 142px;
+  top: 102px;
   z-index: 0;
   right: 35px;
   font-size: small;

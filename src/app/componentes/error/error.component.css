@@ -1,0 +1,26 @@
+
+.div-contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+h1{
+    font-size: 300px;
+}
+
+header{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    -webkit-box-shadow: -2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+    -moz-box-shadow:-2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+    box-shadow: -2px 1px 12px 0px rgba(217, 219, 219, 0.9);  
+}
+
+header img{
+    width: 70px;
+    height: 70px;
+}
+

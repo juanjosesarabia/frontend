@@ -48,12 +48,21 @@ export class LoginComponent implements OnInit {
         }
       },
       error=>{
-          
-            this.mensaje=error.error.mensaje;
-            var err =document.getElementById("errorM");
-             err.style.display="block";
-             gif.style.display="none";
-             setTimeout(function(){err.style.display="none";  }, 5000);            
+        if(error.status==0){          
+          this.mensaje="Conexion al servidor no encontrada";
+          var err =document.getElementById("errorM");
+           err.style.display="block";
+           gif.style.display="none";
+           setTimeout(function(){err.style.display="none";  }, 5000);
+        }else{         
+          this.mensaje=error.error.mensaje;
+          var err =document.getElementById("errorM");
+           err.style.display="block";
+           gif.style.display="none";
+           setTimeout(function(){err.style.display="none";  }, 5000);
+           
+        }
+                     
       
       }
 

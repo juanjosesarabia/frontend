@@ -1,0 +1,26 @@
+.div-menu{
+    width: 20%;
+    background-color: white;
+    overflow: auto;
+    height: 105vh;    
+    margin-top: -7px; 
+    -webkit-box-shadow: -2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+    -moz-box-shadow:-2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+    box-shadow: -2px 1px 12px 0px rgba(217, 219, 219, 0.9);
+}
+#div-logo-dashboard{
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    
+}
+li{
+    list-style: none;
+    text-decoration: none;
+}
+
+#logo-dashboard{
+    width: 114px;
+    height: 105px;
+    margin-bottom: 13px !important;
+}
