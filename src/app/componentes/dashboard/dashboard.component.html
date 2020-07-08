@@ -1,25 +1,94 @@
 <div class="div-container">
-    <div class="div-menu">
-     <header>
-        <div class="container  my-4" id="div-logo-dashboard">
-            <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logo-dashboard">       
-            <h5>Nombre</h5>     
-        </div>
-       
-         <nav class="my-2">
-            <ul>
-                <li>Dashboard</li>
-                <li>Vendedores</li>
-                <li>Ingresos</li>
-                <li>Salidas</li>
-                <li>Vendedores</li>
-                <li>Usuarios</li>
-            </ul>
-         </nav>
-     </header>
-    </div>
-    <div class="div-aleatorio">
+  <div class="div-menu">
+    <header>
+      <div class="container  my-4" id="div-logo-dashboard">
+        <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logo-dashboard">
+        <h5>Nombre</h5>
+      </div>
 
-    </div>
+      <nav class="my-2">
+
+
+
+        
+        <div id="div-dashboard-item">
+            <a href="">
+              <i class="material-icons md-18">dashboard</i>
+              Dashboard
+            </a>
+        </div>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons md-18">person</i>
+              Vendedores
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="div-lista-datos">
+            <a href="">Registrar vendedor</a>
+            <a href="">Buscar Vendedor</a>
+            <a href="">Eliminar Vendedor</a>
+            <a href="">Todos los Vendedores</a>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons md-18">input</i>
+              Ingresos
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="div-lista-datos">
+            <a href="">Registrar Ingreso</a>
+            <a href="">Buscar Ingreso</a>
+            <a href="">Eliminar Ingreso</a>
+            <a href="">Todos los Ingresos</a>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons md-18" id="salida">input</i>
+              Salidas
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="div-lista-datos">
+            <a href="">Registrar Salida</a>
+            <a href="">Buscar Salida</a>
+            <a href="">Eliminar Salida</a>
+            <a href="">Todas los Salidas</a>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons md-18 ">people</i>
+              Usuarios
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="div-lista-datos">
+            <a href="">Registrar Usuario</a>
+            <a href="">Buscar Usuario</a>
+            <a href="">Eliminar Usuario</a>
+            <a href="">Todos los Usuarios</a>
+          </div>
+        </mat-expansion-panel>
+
+
+        <mat-icon aria-hidden="false" aria-label="Ejemplo de icono de inicio"> inicio </mat-icon>
+
+      </nav>
+    </header>
+  </div>
+  <div class="div-aleatorio">
+  <app-data-dashboard ></app-data-dashboard> 
+  </div>
 
 </div>

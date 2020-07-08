@@ -1,3 +1,7 @@
+.div-container{
+    display: flex;
+
+}
 .div-menu{
     width: 20%;
     background-color: white;
@@ -14,9 +18,8 @@
     align-items: center;
     
 }
-li{
-    list-style: none;
-    text-decoration: none;
+i{
+    margin-right: 10px;
 }
 
 #logo-dashboard{
@@ -24,3 +27,44 @@ li{
     height: 105px;
     margin-bottom: 13px !important;
 }
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none !important;
+}
+
+
+#salida{
+    transform: rotate(180deg);
+}
+
+.div-lista-datos{
+ display: flex;
+ flex-direction: column;
+
+}
+
+.div-lista-datos a{
+    text-decoration: none;
+    color:black;
+    margin: 1px;
+    padding: 7px;
+  font-size: small;  
+}
+
+.div-lista-datos a:hover,#div-dashboard-item a:hover{
+    background-color:#f1f3f4;
+}
+
+#div-dashboard-item a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+    margin-left: 14px;
+}
+
+.div-aleatorio{
+    width: 80%;
+}
+

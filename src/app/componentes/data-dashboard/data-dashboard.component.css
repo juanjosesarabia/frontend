@@ -1,0 +1,95 @@
+.contenedor-principal{
+ margin-top: 17px;
+ border-radius: 3px;
+ margin-left: 20px;
+ margin-right: 20px;
+
+}
+
+.div-contenido{
+   text-align: center;
+    min-width: 0;  
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius:0.45rem  0.45rem 0rem 0rem;
+    height: 105vh; 
+    overflow: auto;
+}
+
+.div-data{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.card-div span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 58px;
+}
+
+.card-div{
+    width: 222px;    
+    margin: 8px;
+    height: 119px;    
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+.card-div p{
+    padding: 0;
+    margin: 0;
+    
+}
+
+.title-data{ 
+ font-weight: bold;
+ margin-top: 12px;
+ margin-bottom: -1px;
+ border: 1px solid rgba(0,0,0,.125);
+ border-radius:0.45rem  0.45rem 0rem 0rem;
+ 
+}
+
+.table td, .table th {
+    padding: 0.25rem !important;
+}
+
+th{
+    background-color: #f1f3f4;
+}
+
+
+table{
+    margin-bottom: 22px;
+}
+
+.container table{
+ font-size: 13px;
+}
+
+
+
+@media (max-width: 1434px){
+    .card-div p{
+     font-size: 13px;
+ }
+ .salidas{
+    padding-right: 0px;
+    padding-left: 0px;
+ }
+}
+
+@media (max-width: 991px){
+    .card-div {
+        width: 100%;
+    }
+    .div-data{
+       
+        margin-left: 3px;
+    }
+}
