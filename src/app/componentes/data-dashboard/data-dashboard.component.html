@@ -7,23 +7,24 @@
         <div class="container div-data row ">
             <div class="card-div col-lg-2 ">
                 <p>Vendedores</p>
-                <span>0</span>
+                <span>{{vendedoresNu}}</span>
             </div>
             <div class="card-div col-lg-2">
-                <p>Usuarios</p>
-                <span>0</span>
+                <p>Productos</p>
+                <span>{{productosN}}</span>
             </div>
+
             <div class="card-div col-lg-2">
                 <p>Ingresos</p>
-                <span>0</span>
+                <span>{{ingresosN}}</span>
             </div>
             <div class="card-div col-lg-2 salidas">
                 <p class="salidas">Salidas a Vendedor</p>
-                <span>0</span>
+                <span>{{salidasV}}</span>
             </div>
             <div class="card-div col-lg-2 salidas">
                 <p class="salidas">Salidas a destrucción</p>
-                <span>0</span>
+                <span>{{salidasD}}</span>
             </div>
         </div>
         <div class="container">
@@ -42,20 +43,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    <div *ngIf="vendedores2; then dataV else sinData"></div>
+                    <ng-template #dataV>
+                        <tr *ngFor="let fila of vendedores">
+                            <td>{{fila.cedula}}</td>
+                            <td>{{fila.nombres}}</td>
+                            <td>{{fila.apellidos}}</td>
+                            <td>{{fila.telefono}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #sinData>
+                        <tr>
+                            <td colspan="4">Sin datos</td>
+                        </tr>
+                    </ng-template>
+
 
                 </tbody>
             </table>
+            <div class="div-button" *ngIf="vendedores2">
+                <a href="" class="btn btn-secondary btn-sm">Ver más</a>
+            </div>
         </div>
         <div class="container">
             <p class="title-data">Últimos Ingresos</p>
         </div>
-        <div class="container table-responsive " >
+        <div class="container table-responsive ">
             <table class="table table-bordered ">
                 <thead>
                     <tr>
@@ -67,16 +80,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-
+                    <div *ngIf="ingresos2; then dataI else sinData1"></div>
+                    <ng-template #dataI>
+                        <tr *ngFor="let fila of ingresos">
+                            <td>{{fila.numero_acta}}</td>
+                            <td>{{fila.fechaIngreso}}</td>
+                            <td>{{fila.cantidadIngresada}}</td>
+                            <td>{{fila.nombres}}</td>
+                            <td>{{fila.apellidos}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #sinData1>
+                        <tr>
+                            <td colspan="5">Sin datos</td>
+                        </tr>
+                    </ng-template>
                 </tbody>
+
             </table>
+            <div class="div-button" *ngIf="ingresos2">
+                <a href="" class="btn btn-secondary btn-sm">Ver más</a>
+            </div>
         </div>
         <div class="container">
             <p class="title-data">Últimas Salidas a Vendedor</p>
@@ -86,21 +110,34 @@
                 <thead>
                     <tr>
                         <th scope="col">Cédula Retira</th>
-                        <th scope="col">Nombres  Retira</th>
+                        <th scope="col">Nombres Retira</th>
                         <th scope="col">Fecha Salida</th>
                         <th scope="col">Cantida Retirada</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    <div *ngIf="salidasVendedor2; then dataSv else sinData2"></div>
+                    <ng-template #dataSv>
+                        <tr *ngFor="let fila of salidasVendedor">
+                            <td>{{fila.cedulaNombreRetira}}</td>
+                            <td>{{fila.nombreRetira}}</td>
+                            <td>{{fila.fechaSalida}}</td>
+                            <td>{{fila.cantidadRetirada}}</td>
+                        </tr>
+
+                    </ng-template>
+
+                    <ng-template #sinData2>
+                        <tr>
+                            <td colspan="4">Sin datos</td>
+                        </tr>
+                    </ng-template>
 
                 </tbody>
             </table>
+            <div class="div-button"  *ngIf="salidasVendedor2">
+                <a href="" class="btn btn-secondary btn-sm">Ver más</a>
+            </div>
         </div>
         <div class="container">
             <p class="title-data">Últimas Salidas a Destrucción</p>
@@ -110,21 +147,34 @@
                 <thead>
                     <tr>
                         <th scope="col">Cédula Retira</th>
-                        <th scope="col">Nombres  Retira</th>
+                        <th scope="col">Nombres Retira</th>
                         <th scope="col">Fecha Salida</th>
                         <th scope="col">Cantida Retirada</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    <div *ngIf="salidasDestruccion2; then dataSd else sinData3"></div>
+                    <ng-template #dataSd>
+                        <tr *ngFor="let fila of salidasDestruccion">
+                            <td>{{fila.cedulaNombreRetira}}</td>
+                            <td>{{fila.nombreRetira}}</td>
+                            <td>{{fila.fechaSalida}}</td>
+                            <td>{{fila.cantidadRetirada}}</td>
+                        </tr>
+
+                    </ng-template>
+
+                    <ng-template #sinData3>
+                        <tr>
+                            <td colspan="4">Sin datos</td>
+                        </tr>
+                    </ng-template>
 
                 </tbody>
             </table>
+            <div class="div-button"  *ngIf="salidasDestruccion2">
+                <a href="" class="btn btn-secondary btn-sm">Ver más</a>
+            </div>
         </div>
     </div>
 

@@ -8,11 +8,14 @@ import  { RegistrarUsuarioComponent } from './componentes/registrar-usuario/regi
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { ErrorComponent } from './componentes/error/error.component';
 import { DataDashboardComponent} from './componentes/data-dashboard/data-dashboard.component';
-//Array de rutas
 
+//Importar el guardian de rutas
+ import { GuardianGuard } from "./guardian/guardian.guard";
+
+//Array de rutas
 const appRoutes: Routes =[
 	{path:'',component: LoginComponent},
-	{path:'app/dashboard',component: DashboardComponent},
+	{path:'app/dashboard',component: DashboardComponent,canActivate:[GuardianGuard]},
 	{path:'crear-usuario',component: RegistrarUsuarioComponent},
 	{path:'**',component:ErrorComponent}
 	

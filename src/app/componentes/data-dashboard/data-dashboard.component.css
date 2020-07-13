@@ -3,8 +3,16 @@
  border-radius: 3px;
  margin-left: 20px;
  margin-right: 20px;
-
+ height: 97vh;
+ overflow: auto !important;
+ scrollbar-width: none; 
 }
+
+.contenedor-principal::-webkit-scrollbar {
+    display: none;
+    
+}
+
 
 .div-contenido{
    text-align: center;
@@ -14,7 +22,7 @@
     border: 1px solid rgba(0,0,0,.125);
     border-radius:0.45rem  0.45rem 0rem 0rem;
     height: 105vh; 
-    overflow: auto;
+    overflow: auto !important;
 }
 
 .div-data{
@@ -63,9 +71,10 @@ th{
     background-color: #f1f3f4;
 }
 
-
-table{
-    margin-bottom: 22px;
+.table {
+    width: 100%;
+    margin-bottom: 0.3rem;
+    color: #212529;
 }
 
 .container table{
@@ -92,4 +101,15 @@ table{
        
         margin-left: 3px;
     }
+}
+.div-button{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: .25rem .5rem;
+    font-size: 0.70rem;
+    line-height: 1.5;
+    border-radius: .2rem;
 }

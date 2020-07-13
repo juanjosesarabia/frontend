@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { Login } from '../../models/login';
+import { CookieService }  from 'ngx-cookie-service';
+
 
 
 @Component({
@@ -13,13 +15,16 @@ import { Login } from '../../models/login';
 export class LoginComponent implements OnInit {
   public datosForm:any;
   public mensaje:string;
+
+  
   
   
   constructor(
     private _articleService:LoginService,
     private _route : ActivatedRoute,
     private  _router : Router,
-    
+    private cookieService: CookieService,
+  
 
   ) {
     this.datosForm ={
@@ -44,7 +49,11 @@ export class LoginComponent implements OnInit {
       response =>{
         gif.style.display="none";
         if(response.estado=='ok'){
-          alert("Acceso concedido");
+          this.cookieService.set('cookie-T',response.success['token'],1);         
+          this.cookieService.set('cookie-N',response.datos['name'],1);          
+          this.cookieService.set('cookieT',response.datos['tipo'],1);         
+          this._router.navigate(['app/dashboard']);
+          
         }
       },
       error=>{

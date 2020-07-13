@@ -68,3 +68,27 @@ i{
     width: 80%;
 }
 
+.container button{
+    background-color: white;
+    border: none;
+    font-size: initial;
+    line-height: initial;
+}
+.div-name-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-name-button mat-menu{
+    background-color: white;
+    border: none;
+}
+
+@media (max-width: 991px){
+    .div-name-button h5 {
+        font-size: 15px;
+    }
+   
+}

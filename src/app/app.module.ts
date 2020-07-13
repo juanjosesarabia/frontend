@@ -14,6 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import{ MaterialModule} from './material-module';
 import { DataDashboardComponent } from './componentes/data-dashboard/data-dashboard.component';
+import { CookieService }  from 'ngx-cookie-service';
+import { GuardianGuard } from './guardian/guardian.guard';
+
+import { LoginService } from './services/login.service';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,7 @@ import { DataDashboardComponent } from './componentes/data-dashboard/data-dashbo
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, CookieService,GuardianGuard,LoginService,DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

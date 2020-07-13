@@ -2,20 +2,27 @@
   <div class="div-menu">
     <header>
       <div class="container  my-4" id="div-logo-dashboard">
-        <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logo-dashboard">
-        <h5>Nombre</h5>
+        <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logo-dashboard" class="img-fluid">
+        <div class="div-name-button">
+          <h5>{{name}}</h5>
+          <button  [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span (click)="cerrarSesion()">Cerrar Sesión</span>
+            </button>
+
+          </mat-menu>
+        </div>
       </div>
 
       <nav class="my-2">
-
-
-
-        
         <div id="div-dashboard-item">
-            <a href="">
-              <i class="material-icons md-18">dashboard</i>
-              Dashboard
-            </a>
+          <a href="app/dashboard">
+            <i class="material-icons md-18">dashboard</i>
+            Dashboard
+          </a>
         </div>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
@@ -58,13 +65,30 @@
 
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
-            <a href="">Registrar Salida</a>
+            <a href="">Registrar Salida a Vendedor</a>
+            <a href="">Registrar Salida a Destrucción</a>
             <a href="">Buscar Salida</a>
             <a href="">Eliminar Salida</a>
             <a href="">Todas los Salidas</a>
           </div>
         </mat-expansion-panel>
 
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons md-18 ">category</i>
+              Productos
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="div-lista-datos">
+            <a href="">Registrar Producto</a>
+            <a href="">Buscar Producto</a>
+            <a href="">Eliminar Producto</a>
+            <a href="">Todos los Producto</a>
+          </div>
+        </mat-expansion-panel>
+        
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -80,7 +104,19 @@
             <a href="">Todos los Usuarios</a>
           </div>
         </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons md-18 ">settings</i>
+              Datos del sistema
+            </mat-panel-title>
 
+          </mat-expansion-panel-header>
+          <div class="div-lista-datos">
+            <a href="">Datos Logs</a>
+           
+          </div>
+        </mat-expansion-panel>
 
         <mat-icon aria-hidden="false" aria-label="Ejemplo de icono de inicio"> inicio </mat-icon>
 
@@ -88,7 +124,7 @@
     </header>
   </div>
   <div class="div-aleatorio">
-  <app-data-dashboard ></app-data-dashboard> 
+    <app-data-dashboard></app-data-dashboard>
   </div>
 
 </div>
