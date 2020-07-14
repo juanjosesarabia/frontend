@@ -13,4 +13,35 @@ body::-webkit-scrollbar {
   display: none;  
 }
 
+.item-estado{
+  background-color: #C1C6C9;
+ 
+}
+
+.contenedor-principal{
+  margin-top: 17px;
+  border-radius: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 97vh;
+  overflow: auto !important;
+  scrollbar-width: none; 
+ }
+ 
+ .contenedor-principal::-webkit-scrollbar {
+     display: none;
+     
+ }
+ 
+ 
+ .div-contenido{
+    text-align: center;
+     min-width: 0;  
+     background-color: #fff;
+     background-clip: border-box;
+     border: 1px solid rgba(0,0,0,.125);
+     border-radius:0.45rem  0.45rem 0rem 0rem;
+     height: 105vh; 
+     overflow: auto !important;
+ }
 

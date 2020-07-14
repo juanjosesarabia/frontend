@@ -4,6 +4,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule {}

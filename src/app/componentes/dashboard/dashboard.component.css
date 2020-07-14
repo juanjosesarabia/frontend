@@ -54,6 +54,9 @@ i{
 .div-lista-datos a:hover,#div-dashboard-item a:hover{
     background-color:#f1f3f4;
 }
+#div-dashoard-item{
+    border-radius: 4px;
+}
 
 #div-dashboard-item a{
     display: flex;

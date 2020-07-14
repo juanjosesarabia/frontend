@@ -19,13 +19,13 @@
 
       <nav class="my-2">
         <div id="div-dashboard-item">
-          <a href="app/dashboard">
-            <i class="material-icons md-18">dashboard</i>
+          <a routerLink="dashboard" routerLinkActive="item-estado">
+            <i class="material-icons md-18" routerLinkActive="item-estado">dashboard</i>
             Dashboard
           </a>
         </div>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header routerLink="vendedor" routerLinkActive="item-estado">
             <mat-panel-title>
               <i class="material-icons md-18">person</i>
               Vendedores
@@ -33,15 +33,16 @@
 
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
-            <a href="">Registrar vendedor</a>
-            <a href="">Buscar Vendedor</a>
-            <a href="">Eliminar Vendedor</a>
-            <a href="">Todos los Vendedores</a>
+            <a routerLink="vendedor">Registrar vendedor</a>
+            <a routerLink="vendedor/edit-vendedor">Editar Vendedor</a>
+            <a routerLink="vendedor/search-vendedor">Buscar Vendedor</a>
+            <a routerLink="vendedor/delete-vendedor">Eliminar Vendedor</a>
+            <a routerLink="vendedor/list-vendedor">Todos los Vendedores</a>
           </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header routerLink="ingreso" routerLinkActive="item-estado">
             <mat-panel-title>
               <i class="material-icons md-18">input</i>
               Ingresos
@@ -49,15 +50,16 @@
 
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
-            <a href="">Registrar Ingreso</a>
-            <a href="">Buscar Ingreso</a>
-            <a href="">Eliminar Ingreso</a>
-            <a href="">Todos los Ingresos</a>
+            <a routerLink="ingreso">Registrar Ingreso</a>
+            <a routerLink="ingreso/edit-ingreso">Editar Ingreso</a>
+            <a routerLink="ingreso/search-ingreso">Buscar Ingreso</a>
+            <a routerLink="ingreso/delete-ingreso">Eliminar Ingreso</a>
+            <a routerLink="ingreso/list-ingreso">Todos los Ingresos</a>
           </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header routerLink="salida" routerLinkActive="item-estado">
             <mat-panel-title>
               <i class="material-icons md-18" id="salida">input</i>
               Salidas
@@ -65,16 +67,16 @@
 
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
-            <a href="">Registrar Salida a Vendedor</a>
-            <a href="">Registrar Salida a Destrucción</a>
-            <a href="">Buscar Salida</a>
-            <a href="">Eliminar Salida</a>
-            <a href="">Todas los Salidas</a>
+            <a routerLink="salida">Registrar Salida a Vendedor</a>
+            <a routerLink="salida/registrer-salida-destruccion">Registrar Salida a Destrucción</a>
+            <a routerLink="salida/search-salida">Buscar Salida</a>
+            <a routerLink="salida/delete-salida">Eliminar Salida</a>
+            <a routerLink="salida/list-salida">Todas los Salidas</a>
           </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header routerLink="producto" routerLinkActive="item-estado">
             <mat-panel-title>
               <i class="material-icons md-18 ">category</i>
               Productos
@@ -82,38 +84,40 @@
 
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
-            <a href="">Registrar Producto</a>
-            <a href="">Buscar Producto</a>
-            <a href="">Eliminar Producto</a>
-            <a href="">Todos los Producto</a>
+            <a routerLink="producto" >Registrar Producto</a>
+            <a routerLink="producto/edit-producto" routerLinkActive="item-estado">Editar Producto</a>
+            <a routerLink="producto/search-producto" routerLinkActive="item-estado">Buscar Producto</a>
+            <a routerLink="producto/delete-producto" routerLinkActive="item-estado">Eliminar Producto</a>
+            <a routerLink="producto/list-producto" routerLinkActive="item-estado">Todos los Producto</a>
           </div>
         </mat-expansion-panel>
         
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header routerLink="usuario" routerLinkActive="item-estado" >
             <mat-panel-title>
               <i class="material-icons md-18 ">people</i>
               Usuarios
             </mat-panel-title>
 
           </mat-expansion-panel-header>
-          <div class="div-lista-datos">
-            <a href="">Registrar Usuario</a>
-            <a href="">Buscar Usuario</a>
-            <a href="">Eliminar Usuario</a>
-            <a href="">Todos los Usuarios</a>
+          <div class="div-lista-datos" >
+            <a routerLink="usuario" >Registrar Usuario</a>
+            <a routerLink="usuario/edit-usuario" routerLinkActive="item-estado">Editar Usuario</a>
+            <a routerLink="usuario/search-usuario" routerLinkActive="item-estado">Buscar Usuario</a>
+            <a routerLink="usuario/delete-usuario" routerLinkActive="item-estado">Eliminar Usuario</a>
+            <a routerLink="usuario/list-usuarios" routerLinkActive="item-estado">Todos los Usuarios</a>
           </div>
         </mat-expansion-panel>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
+          <mat-expansion-panel-header routerLink="log" routerLinkActive="item-estado">
+            <mat-panel-title >
               <i class="material-icons md-18 ">settings</i>
               Datos del sistema
             </mat-panel-title>
 
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
-            <a href="">Datos Logs</a>
+            <a routerLink="log" routerLinkActive="item-estado"> Logs</a>
            
           </div>
         </mat-expansion-panel>
@@ -124,7 +128,7 @@
     </header>
   </div>
   <div class="div-aleatorio">
-    <app-data-dashboard></app-data-dashboard>
+    <router-outlet></router-outlet>
   </div>
 
 </div>

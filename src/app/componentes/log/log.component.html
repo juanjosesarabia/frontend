@@ -1,0 +1,42 @@
+<div class="contenedor-principal">
+
+    <div class="div-contenido">
+        <h4>Lista de Logs</h4>
+        <mat-divider></mat-divider>
+
+        <div class="container table-responsive mt-2">
+            <table class="table table-bordered  table-responsive">
+
+                <thead>
+
+                    <tr>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cédula Usuario</th>
+                        <th scope="col">Nombre Usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div *ngIf="data; then data else sinData"></div>
+                    <ng-template #data>
+                        <tr *ngFor="let fila of datos">
+                            <td class="anchotd" id="descripcion">{{fila.descripcion}}</td>
+                            <td>{{fila.created_at}}</td>
+                            <td>{{fila.cedula}}</td>
+                            <td class="anchotd">{{fila.name}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #sinData>
+                        <tr>
+                            <td colspan="4">Sin datos</td>
+                        </tr>
+                    </ng-template>
+
+
+                </tbody>
+            </table>
+            <mat-paginator [length]="100" [pageSize]="35" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+        </div>
+    </div>
+</div>
