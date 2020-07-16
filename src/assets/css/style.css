@@ -45,3 +45,7 @@ body::-webkit-scrollbar {
      overflow: auto !important;
  }
 
+.design-data{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.45rem 0.45rem 0rem 0rem;
+}
