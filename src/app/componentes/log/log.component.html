@@ -10,20 +10,20 @@
                 <thead>
 
                     <tr>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Cédula Usuario</th>
-                        <th scope="col">Nombre Usuario</th>
+                        <th scope="col" class="anchoth">Descripción</th>
+                        <th scope="col" class="anchotd">Fecha</th>
+                        <th scope="col" class="anchotd">Cédula Usuario</th>
+                        <th scope="col" class="anchotd">Nombre Usuario</th>
                     </tr>
                 </thead>
                 <tbody>
                     <div *ngIf="data; then data else sinData"></div>
                     <ng-template #data>
-                        <tr *ngFor="let fila of datos">
-                            <td class="anchotd" id="descripcion">{{fila.descripcion}}</td>
+                        <tr *ngFor="let fila of datos | paginate:page_size:page_number">
+                            <td  id="descripcion">{{fila.descripcion}}</td>
                             <td>{{fila.created_at}}</td>
                             <td>{{fila.cedula}}</td>
-                            <td class="anchotd">{{fila.name}}</td>
+                            <td >{{fila.name}}</td>
                         </tr>
                     </ng-template>
                     <ng-template #sinData>
@@ -35,8 +35,12 @@
 
                 </tbody>
             </table>
-            <mat-paginator [length]="100" [pageSize]="35" [pageSizeOptions]="[5, 10, 25, 100]">
+            <mat-paginator [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
+                (page)="paginator($event)" showFirstLastButtons>
             </mat-paginator>
         </div>
     </div>
 </div>
+<ngx-spinner type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

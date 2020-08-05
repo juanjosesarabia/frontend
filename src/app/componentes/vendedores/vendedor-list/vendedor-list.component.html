@@ -2,4 +2,49 @@
     <h4>Lista de Vendedores</h4>
     <mat-divider></mat-divider>
 
+       
+    <div class="container table-responsive mt-2 ">
+      <table class="table table-bordered  table-responsive">
+
+          <thead>
+
+              <tr>
+                 
+                  <th scope="col" class="anchotd">Cédula</th>
+                  <th scope="col" class="anchotd">Nombres</th>
+                  <th scope="col" class="anchotd">Apellidos</th>
+                  <th scope="col" class="anchotd">Teléfono</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              <div *ngIf="data; then data else sinData"></div>
+              <ng-template #data>
+                  <tr *ngFor="let fila of datos | paginate:page_size:page_number">
+                     
+                      <td>{{fila.cedula}}</td>
+                      <td >{{fila.nombres}}</td>
+                      <td >{{fila.apellidos}}</td>
+                      <td >{{fila.telefono}}</td>
+                      
+                  </tr>
+              </ng-template>
+              <ng-template #sinData>
+                  <tr>
+                      <td colspan="9">Sin datos</td>
+                  </tr>
+              </ng-template>
+
+
+          </tbody>
+      </table>
+      <mat-paginator [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
+          (page)="paginator($event)" showFirstLastButtons>
+      </mat-paginator>
+
+     
+  </div>
+  <ngx-spinner type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
   </div>

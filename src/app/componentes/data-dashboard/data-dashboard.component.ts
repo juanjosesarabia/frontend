@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-data-dashboard',
@@ -26,7 +27,8 @@ export class DataDashboardComponent implements OnInit {
 
 
   constructor(
-    private dataService: DashboardService
+    private dataService: DashboardService,
+    private spiner :NgxSpinnerService
   ) { 
     this.vendedoresNu=0;
     this.ingresosN=0;
@@ -43,9 +45,14 @@ export class DataDashboardComponent implements OnInit {
     this.cargarData();
   }
    cargarData(){
+     this.spiner.show();
     this.dataService.getData().subscribe(
       response=>{     
         
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spiner.hide();
+        }, 3000);
         this.vendedoresNu=response.vendedoresN;
         this.ingresosN=response.ingresosN;
         this.productosN=response.productosN;

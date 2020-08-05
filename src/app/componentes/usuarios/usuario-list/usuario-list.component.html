@@ -4,40 +4,50 @@
         <h4>Lista de Usuarios</h4>
         <mat-divider></mat-divider>
         <div class="container table-responsive mt-2" >
+          
+
+
           <table class="table table-bordered  table-responsive">
 
-              <thead>
+            <thead>
 
-                  <tr>
-                      <th scope="col">Cédula </th>
-                      <th scope="col">Nombre </th>
-                      <th scope="col">Correo</th>
-                      <th scope="col">Tipo de Usuario</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <div *ngIf="data; then data else sinData"></div>
-                  <ng-template #data>
-                      <tr *ngFor="let fila of usuarios">
-                          <td class="item-fila">{{fila.cedula}}</td>
-                          <td class="item-fila">{{fila.nombres}}</td>
-                          <td class="item-fila">{{fila.correo}}</td>
-                          <td class="item-fila" >{{fila.tipo_usuario}}</td>
-                         
-                      </tr>
-                  </ng-template>
-                  <ng-template #sinData>
-                      <tr>
-                          <td colspan="4">Sin datos</td>
-                      </tr>
-                  </ng-template>
+                <tr>
+                    <th scope="col" class="anchoth">Cédula </th>
+                    <th scope="col" class="anchotd">Nombre </th>
+                    <th scope="col" class="anchotd">Correo</th>
+                    <th scope="col" class="anchotd">Tipo de Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div *ngIf="data; then data else sinData "></div>
+                <ng-template #data>
+                    <tr *ngFor="let fila2 of usuarios | paginate:page_size:page_number">
+                    
+                        <td class="item-fila" >{{fila2.cedula}}</td>
+                        <td class="item-fila">{{fila2.nombres}}</td>
+                        <td class="item-fila">{{fila2.correo}}</td>
+                        <td class="item-fila" >{{fila2.tipo_usuario}}</td>
+                       
+                    </tr>
+                </ng-template>
+                <ng-template #sinData>
+                    <tr>
+                        <td colspan="4">Sin datos</td>
+                    </tr>
+                </ng-template>
 
 
-              </tbody>
-          </table>
-          <mat-paginator [length]="[usuarios.length]" [pageSize]="35" [pageSizeOptions]="[5, 10, 25, 100]">
+            </tbody>
+        </table>
+          <mat-paginator [length]="[usuarios.length]" 
+                        [pageSize]="page_size" 
+                        [pageSizeOptions]="[5, 10,20,50, 100]"
+                        (page)="paginator($event)"
+                        showFirstLastButtons>
         </mat-paginator>
       </div>
     </div>
-
+    <ngx-spinner type="ball-spin-clockwise">
+        <p style="font-size: 20px; color: white">Cargando...</p>
+    </ngx-spinner>
  

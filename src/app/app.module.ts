@@ -16,9 +16,14 @@ import{ MaterialModule} from './material-module';
 import { DataDashboardComponent } from './componentes/data-dashboard/data-dashboard.component';
 import { CookieService }  from 'ngx-cookie-service';
 import { GuardianGuard } from './guardian/guardian.guard';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { LoginService } from './services/login.service';
+import { ProductoService } from './services/producto.service';
 import { DashboardService } from './services/dashboard.service';
+import { VendedoresService } from './services/vendedores.service';
+import { IngresoService } from './services/ingreso.service';
 import { LogComponent } from './componentes/log/log.component';
 import { UsuarioRegisComponent } from './componentes/usuarios/usuario-regis/usuario-regis.component';
 import { UsuarioEditComponent } from './componentes/usuarios/usuario-edit/usuario-edit.component';
@@ -51,6 +56,7 @@ import { SalidaEditComponent } from './componentes/salidas/salida-edit/salida-ed
 import { SalidaSearchComponent } from './componentes/salidas/salida-search/salida-search.component';
 import { SalidaDeleteComponent } from './componentes/salidas/salida-delete/salida-delete.component';
 import { SalidaListComponent } from './componentes/salidas/salida-list/salida-list.component';
+import { PaginatePipe } from './pipe/paginate.pipe';
 
 @NgModule({
   declarations: [
@@ -91,7 +97,8 @@ import { SalidaListComponent } from './componentes/salidas/salida-list/salida-li
     SalidaEditComponent,
     SalidaSearchComponent,
     SalidaDeleteComponent,
-    SalidaListComponent
+    SalidaListComponent,
+    PaginatePipe
   ],
   imports: [
     BrowserModule,
@@ -100,9 +107,11 @@ import { SalidaListComponent } from './componentes/salidas/salida-list/salida-li
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
+    NgxSpinnerModule,
     MaterialModule
   ],
-  providers: [appRoutingProviders, CookieService,GuardianGuard,LoginService,DashboardService],
+  providers: [appRoutingProviders, CookieService,GuardianGuard,LoginService,DashboardService, ProductoService,VendedoresService,IngresoService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
