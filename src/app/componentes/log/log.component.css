@@ -58,3 +58,12 @@ td{
 #descripcion{
     text-align: start;
 }
+
+.mat-form-field{
+    width : 100% !important;
+}
+
+.div-button{
+    display: flex;
+    justify-content:flex-end;
+}

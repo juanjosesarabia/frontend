@@ -6,8 +6,9 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
-
-
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   exports: [   
     MatExpansionModule,
@@ -16,7 +17,10 @@ import {MatInputModule} from '@angular/material/input';
     MatDividerModule,
     MatMenuModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {}

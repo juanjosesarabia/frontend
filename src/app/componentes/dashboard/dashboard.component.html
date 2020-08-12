@@ -37,9 +37,7 @@
           </mat-expansion-panel-header>
           <div class="div-lista-datos">
             <a routerLink="vendedor">Registrar vendedor</a>
-            <a routerLink="vendedor/edit-vendedor">Editar Vendedor</a>
-            <a routerLink="vendedor/search-vendedor">Buscar Vendedor</a>
-            <a routerLink="vendedor/delete-vendedor">Eliminar Vendedor</a>
+            <a routerLink="vendedor/edit-vendedor">Gestionar Vendedores</a>
             <a routerLink="vendedor/list-vendedor">Todos los Vendedores</a>
           </div>
         </mat-expansion-panel>
@@ -105,10 +103,8 @@
           </mat-expansion-panel-header>
           <div class="div-lista-datos" >
             <a routerLink="usuario" >Registrar Usuario</a>
-            <a routerLink="usuario/edit-usuario" routerLinkActive="item-estado">Editar Usuario</a>
-            <a routerLink="usuario/search-usuario" routerLinkActive="item-estado">Buscar Usuario</a>
-            <a routerLink="usuario/delete-usuario" routerLinkActive="item-estado">Eliminar Usuario</a>
-            <a routerLink="usuario/list-usuarios" routerLinkActive="item-estado">Todos los Usuarios</a>
+            <a routerLink="usuario/gestion-usuario" routerLinkActive="item-estado">Gestionar Usuarios</a>
+            <a routerLink="usuario/usuarios-delete" routerLinkActive="item-estado">Usuarios Eliminados</a>
           </div>
         </mat-expansion-panel>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >

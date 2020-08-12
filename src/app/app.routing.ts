@@ -13,10 +13,8 @@ import { LogComponent } from './componentes/log/log.component';
  import { GuardianGuard } from "./guardian/guardian.guard";
 import { UsuarioRegisComponent } from './componentes/usuarios/usuario-regis/usuario-regis.component';
 import { UsuarioPadreComponent } from './componentes/usuarios/usuario-padre/usuario-padre.component';
-import { UsuarioDeleteComponent } from './componentes/usuarios/usuario-delete/usuario-delete.component';
 import { UsuarioEditComponent } from './componentes/usuarios/usuario-edit/usuario-edit.component';
 import { UsuarioSearchComponent } from './componentes/usuarios/usuario-search/usuario-search.component';
-import { UsuarioListComponent } from './componentes/usuarios/usuario-list/usuario-list.component';
 import { ProductoPadreComponent } from './componentes/productos/producto-padre/producto-padre.component';
 import { ProductoSearchComponent } from './componentes/productos/producto-search/producto-search.component';
 import { ProductoRegistrerComponent } from './componentes/productos/producto-registrer/producto-registrer.component';
@@ -26,8 +24,6 @@ import { ProductoListComponent } from './componentes/productos/producto-list/pro
 import { VendedorPadreComponent } from './componentes/vendedores/vendedor-padre/vendedor-padre.component';
 import { VendedorRegistrerComponent } from './componentes/vendedores/vendedor-registrer/vendedor-registrer.component';
 import { VendedorEditComponent } from './componentes/vendedores/vendedor-edit/vendedor-edit.component';
-import { VendedorSearchComponent } from './componentes/vendedores/vendedor-search/vendedor-search.component';
-import { VendedorDeleteComponent } from './componentes/vendedores/vendedor-delete/vendedor-delete.component';
 import { VendedorListComponent } from './componentes/vendedores/vendedor-list/vendedor-list.component';
 import { IngresoPadreComponent } from './componentes/ingresos/ingreso-padre/ingreso-padre.component';
 import { IngresoRegistrerComponent } from './componentes/ingresos/ingreso-registrer/ingreso-registrer.component';
@@ -53,10 +49,8 @@ const appRoutes: Routes =[
 		   {path:'usuario',component:UsuarioPadreComponent,canActivate:[GuardianGuard],
 		     children:[
 				 {path:'',component:UsuarioRegisComponent,canActivate:[GuardianGuard]},
-				 {path:'edit-usuario',component:UsuarioEditComponent,canActivate:[GuardianGuard]},
-				 {path:'search-usuario',component:UsuarioSearchComponent,canActivate:[GuardianGuard]},
-				 {path:'delete-usuario',component:UsuarioDeleteComponent,canActivate:[GuardianGuard]},
-				 {path:'list-usuarios',component:UsuarioListComponent,canActivate:[GuardianGuard]},				
+				 {path:'gestion-usuario',component:UsuarioEditComponent,canActivate:[GuardianGuard]},
+				 {path:'usuarios-delete',component:UsuarioSearchComponent,canActivate:[GuardianGuard]}			
 			 ],
 			},
 			{path:'producto',component:ProductoPadreComponent,canActivate:[GuardianGuard],
@@ -72,8 +66,6 @@ const appRoutes: Routes =[
 		     children:[
 				 {path:'',component:VendedorRegistrerComponent,canActivate:[GuardianGuard]},
 				 {path:'edit-vendedor',component:VendedorEditComponent,canActivate:[GuardianGuard]},
-				 {path:'search-vendedor',component:VendedorSearchComponent,canActivate:[GuardianGuard]},
-				 {path:'delete-vendedor',component:VendedorDeleteComponent,canActivate:[GuardianGuard]},
 				 {path:'list-vendedor',component:VendedorListComponent,canActivate:[GuardianGuard]},				
 			 ],
 			},

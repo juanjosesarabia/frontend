@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxSpinnerService } from "ngx-spinner";
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-log',
@@ -13,13 +14,15 @@ export class LogComponent implements OnInit {
  public data :boolean;
  p:number=1;
   total:number;
+  filtroLog ="";
 
   page_size:number=10;
   page_number:number=1;
   
   constructor(
     private dataService: DashboardService,
-    private spiner :NgxSpinnerService
+    private spiner :NgxSpinnerService,
+    private alertService: AlertService
   ) { 
     this.data=false;
   }
@@ -49,7 +52,15 @@ export class LogComponent implements OnInit {
 
      },
      error=>{
-       alert("Algo salió mal"+error);
+      this.spiner.hide();
+      if(error.status==0){
+        this.alertService.danger("Error de comunicación con el servidor");  
+      }
+      if(error.status==404){
+        this.alertService.danger(error.error.mensaje);  
+      }
+    
+     
 
      }
 

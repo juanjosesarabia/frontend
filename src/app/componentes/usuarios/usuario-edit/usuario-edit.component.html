@@ -1,8 +1,306 @@
+<div class="div-contenido">
+  <h4>Gestionar Usuarios</h4>
+  <mat-divider></mat-divider>
+  <div class="container table-responsive mt-2">
 
-    <div class="div-contenido">
-        <h4>Editar Usuario</h4>
+    <div class="contanier">
+      <ngx-alerts></ngx-alerts>
+      <form>
+        <mat-form-field *ngIf="data">
+          <mat-label>Buscar Usuario</mat-label>
+          <input matInput placeholder="Ingrese la cédula" [(ngModel)]="filtro" name="filtro">
+
+
+        </mat-form-field>
+      </form>
+    </div>
+
+    <table class="table table-bordered">
+
+      <thead>
+
+        <tr>
+          <th scope="col" class="anchoth">Cédula </th>
+          <th scope="col" class="anchotd">Nombre </th>
+          <th scope="col" class="anchotd">Correo</th>
+          <th scope="col" class="anchotd">Tipo de Usuario</th>
+          <th scope="col" class="anchotd">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div *ngIf="data; then data1 else sinData "></div>
+        <ng-template #data1>
+          <tr *ngFor="let fila2 of usuarios  |search:filtro | paginate:page_size:page_number">
+
+            <td class="item-fila">{{fila2.cedula}}</td>
+            <td class="item-fila">{{fila2.nombres}}</td>
+            <td class="item-fila">{{fila2.correo}}</td>
+            <td class="item-fila">{{fila2.tipo_usuario}}</td>
+            <td class="item-fila">
+              <button class="btn btn-warning editButton" title="Editar Usuario" (click)="abrirForm(fila2)">
+                <mat-icon class="edIcon">edit</mat-icon>
+              </button>
+              <button class="btn btn-secondary editButton" title="Restablecer contraseña" (click)="abrirFormContrasena(fila2)">
+                <mat-icon class="edIcon">vpn_key</mat-icon>
+              </button>
+              <button class="btn btn-info editButton" title="Cambiar tipo de Usuario" (click)="abrirFormTipo(fila2)">
+                <mat-icon class="edIcon">engineering</mat-icon>
+              </button>
+              <button class="btn btn-danger editButton" title="Eliminar" (click)="abrirFormEliminar(fila2)">
+                <mat-icon class="edIcon">delete</mat-icon>
+              </button>
+
+            </td>
+
+          </tr>
+        </ng-template>
+        <ng-template #sinData>
+          <tr>
+            <td colspan="5">Sin datos</td>
+          </tr>
+        </ng-template>
+
+
+      </tbody>
+    </table>
+    <mat-paginator [length]="[usuarios.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
+      (page)="paginator($event)" showFirstLastButtons *ngIf="data">
+    </mat-paginator>
+  </div>
+
+  <div class="container"class="animacionForm" *ngIf="editU"><!--Editar usuario-->
+    <div id="container-form">
+      <form class="data-form mt-3" novalidate (ngSubmit)="editarUsuario()" id="formEditUser" [formGroup]="user">
+        <h6>Información de usuario a editar </h6>
         <mat-divider></mat-divider>
+        <div class="orden-form">
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Cédula</mat-label>
+            <input matInput formControlName="cedula" id="nameValue" [(ngModel)]="user.value.cedula">
+            <mat-error *ngIf="user.get('cedula').hasError('pattern') ">
+              Por favor ingrese una cédula válida
+            </mat-error>
+            <mat-error *ngIf="user.get('cedula').hasError('required')">
+              La cédula es <strong>obligatoria</strong>
+            </mat-error>
+            <mat-error *ngIf="user.get('cedula').hasError('minlength')">
+              La cédula debe tener minimo 5 digitos
+            </mat-error>
+          </mat-form-field>
 
-      </div>
+          <div class="clearfix"></div>
 
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Nombres Completos</mat-label>
+            <input matInput placeholder="Juanito Pérez" formControlName="name" [(ngModel)]="user.value.name">
+            <mat-error *ngIf="user.get('name').hasError('pattern') ">
+              Por favor ingrese un nombre válido
+            </mat-error>
+            <mat-error *ngIf="user.get('name').hasError('required')">
+              El nombre es <strong>obligatorio</strong>
+            </mat-error>
+            <mat-error *ngIf="user.get('name').hasError('minlength')">
+              El nombre debe tener minimo 7 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="orden-form">
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="ejemplo@example.com" formControlName="email">
+            <mat-error *ngIf="user.get('email').hasError('pattern')">
+              Por favor ingrese un correo valido
+            </mat-error>
+            <mat-error *ngIf="user.get('email').hasError('required')">
+              Correo es <strong>obligatorio</strong>
+            </mat-error>
+            <mat-error *ngIf="user.get('email').hasError('minlength')">
+              El correo debe tener minimo 5 caracteres
+            </mat-error>
+          </mat-form-field>
+
+          <div class="clearfix"></div>
+
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Contraseña</mat-label>
+            <input type="text" matInput formControlName="password" autofocus [type]="hide ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="btn-contraseña">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            <mat-error *ngIf="user.get('password').hasError('required')">
+              La contraseña es <strong>obligatoria</strong>
+            </mat-error>
+            <mat-error *ngIf="user.get('password').hasError('minlength')">
+              La contraseña debe tener minimo 6 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="orden-form" id="selectUser">
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Selecciona tipo de Usuario</mat-label>
+            <mat-select formControlName="tipo_usuario">
+              <mat-option>Sin dato</mat-option>
+              <mat-option value="Cliente">Cliente</mat-option>
+              <mat-option value="Admin">Admin</mat-option>
+              <mat-option value="No asignado">No asignado</mat-option>
+            </mat-select>
+            <mat-error *ngIf="user.get('tipo_usuario').hasError('required')">
+              El tipo de usuario es <strong>obligatorio</strong>
+            </mat-error>
+
+          </mat-form-field>
+
+
+        </div>
+        <div class="container">
+          <div class="data-form-button">
+            <button type="button"class="btn btn-danger" (click)="cerrar1()">Cancelar</button>
+            <div class="clearButton"></div>
+            <button type="submit" type="submit" class="btn btn-secondary" [disabled]="user.invalid">Modificar
+              Usuario</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> <!--Editar usuario-->
+
+
+  <div class="container" class="animacionForm" *ngIf="cambiarC"> <!--Modificar contraseña-->
+   
+    <div id="container-form">
+
+      <form class="data-form mt-3" novalidate (ngSubmit)="cambiarContrasena($event)" [formGroup]="resetContrasena">
+        <h6>Cambiar contraseña </h6>
+        <div class="container">
+          <mat-form-field appearance="outline" class="input-form" >
+            <mat-label>Cédula del Usuario</mat-label>
+            <input type="text" matInput  formControlName="cc" >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Nombres del usuario</mat-label>
+            <input  type="text" matInput  formControlName="nombres" >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Contraseña</mat-label>
+            <input type="text" matInput formControlName="contrasenaNueva" [type]="hide ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="btn-contraseña">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            <mat-error *ngIf="resetContrasena.get('contrasenaNueva').hasError('required')">
+              La contraseña es <strong>obligatoria</strong>
+            </mat-error>
+            <mat-error *ngIf="resetContrasena.get('contrasenaNueva').hasError('minlength')">
+              La contraseña debe tener minimo 6 caracteres
+            </mat-error>
+          </mat-form-field>
+
+
+          <div class="container">
+            <div class="data-form-button">
+              <button type="button"class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+              <div class="clearButton"></div>
+              <button type="submit" type="submit" class="btn btn-secondary" [disabled]="resetContrasena.invalid">Cambiar
+                contraseña</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div> <!--Modificar contraseña-->
+
+
+  <div class="container" class="animacionForm" *ngIf="tipo"> <!--Cambiar tipo-->
+   
+    <div id="container-form">
+
+      <form class="data-form mt-3" novalidate (ngSubmit)="cambiarTipoU()" [formGroup]="cambiarTipo">
+        <h6>Cambiar Tipo de Usuario</h6>
+        <div class="container">
+          <mat-form-field appearance="outline" class="input-form" >
+            <mat-label>Cédula del Usuario</mat-label>
+            <input type="text" matInput  formControlName="cc" >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Nombres del usuario</mat-label>
+            <input  type="text" matInput  formControlName="nombres" >
+          </mat-form-field>
+
+          
+            <mat-form-field appearance="outline" class="input-form">
+              <mat-label>Selecciona tipo de Usuario</mat-label>
+              <mat-select formControlName="tipoUsuario">
+                <mat-option>Sin dato</mat-option>
+                <mat-option value="Cliente">Cliente</mat-option>
+                <mat-option value="Admin">Admin</mat-option>
+                <mat-option value="No asignado">No asignado</mat-option>
+              </mat-select>
+              <mat-error *ngIf="cambiarTipo.get('tipoUsuario').hasError('required')">
+                El tipo de usuario es <strong>obligatorio</strong>
+              </mat-error>
   
+            </mat-form-field>           
+
+          
+
+
+          <div class="container">
+            <div class="data-form-button">
+              <button type="button"class="btn btn-danger" (click)="cerrar2()">Cancelar</button>
+              <div class="clearButton"></div>
+              <button type="submit" type="submit" class="btn btn-secondary" [disabled]="cambiarTipo.invalid">Cambiar
+                Tipo de Usuario</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div> <!--Cambiar tipo-->
+
+
+
+  <div class="container" class="animacionForm" *ngIf="eliminarUser"> <!--Eliminar Usuario tipo-->
+   
+    <div id="container-form">
+
+      <form class="data-form mt-3" novalidate (ngSubmit)="eliminarU()" [formGroup]="eliminarUsuario">
+        <h6>Eliminar Usuario</h6>
+        <div class="container">
+          <mat-form-field appearance="outline" class="input-form" >
+            <mat-label>Cédula del Usuario</mat-label>
+            <input type="text" matInput  formControlName="cc" >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Nombres del usuario</mat-label>
+            <input  type="text" matInput  formControlName="nombres" >
+          </mat-form-field>         
+
+          
+
+
+          <div class="container">
+            <div class="data-form-button">
+              <button type="button"class="btn btn-danger" (click)="cerrar3()">Cancelar</button>
+              <div class="clearButton"></div>
+              <button type="submit" type="submit" class="btn btn-secondary" >Eliminar usuario
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div> <!--Eliminar usuario-->
+
+</div>
+
+<ngx-spinner type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

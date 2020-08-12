@@ -28,8 +28,6 @@ import { LogComponent } from './componentes/log/log.component';
 import { UsuarioRegisComponent } from './componentes/usuarios/usuario-regis/usuario-regis.component';
 import { UsuarioEditComponent } from './componentes/usuarios/usuario-edit/usuario-edit.component';
 import { UsuarioSearchComponent } from './componentes/usuarios/usuario-search/usuario-search.component';
-import { UsuarioDeleteComponent } from './componentes/usuarios/usuario-delete/usuario-delete.component';
-import { UsuarioListComponent } from './componentes/usuarios/usuario-list/usuario-list.component';
 import { UsuarioPadreComponent } from './componentes/usuarios/usuario-padre/usuario-padre.component';
 import { ProductoPadreComponent } from './componentes/productos/producto-padre/producto-padre.component';
 import { ProductoRegistrerComponent } from './componentes/productos/producto-registrer/producto-registrer.component';
@@ -40,8 +38,6 @@ import { ProductoListComponent } from './componentes/productos/producto-list/pro
 import { VendedorPadreComponent } from './componentes/vendedores/vendedor-padre/vendedor-padre.component';
 import { VendedorEditComponent } from './componentes/vendedores/vendedor-edit/vendedor-edit.component';
 import { VendedorRegistrerComponent } from './componentes/vendedores/vendedor-registrer/vendedor-registrer.component';
-import { VendedorSearchComponent } from './componentes/vendedores/vendedor-search/vendedor-search.component';
-import { VendedorDeleteComponent } from './componentes/vendedores/vendedor-delete/vendedor-delete.component';
 import { VendedorListComponent } from './componentes/vendedores/vendedor-list/vendedor-list.component';
 import { IngresoPadreComponent } from './componentes/ingresos/ingreso-padre/ingreso-padre.component';
 import { IngresoRegistrerComponent } from './componentes/ingresos/ingreso-registrer/ingreso-registrer.component';
@@ -57,6 +53,9 @@ import { SalidaSearchComponent } from './componentes/salidas/salida-search/salid
 import { SalidaDeleteComponent } from './componentes/salidas/salida-delete/salida-delete.component';
 import { SalidaListComponent } from './componentes/salidas/salida-list/salida-list.component';
 import { PaginatePipe } from './pipe/paginate.pipe';
+import { SearchPipe } from './pipe/search.pipe';
+import { AlertModule } from 'ngx-alerts';
+import { SearchLogPipe } from './pipe/search-log.pipe';
 
 @NgModule({
   declarations: [
@@ -70,8 +69,6 @@ import { PaginatePipe } from './pipe/paginate.pipe';
     UsuarioRegisComponent,
     UsuarioEditComponent,
     UsuarioSearchComponent,
-    UsuarioDeleteComponent,
-    UsuarioListComponent,
     UsuarioPadreComponent,
     ProductoPadreComponent,
     ProductoRegistrerComponent,
@@ -82,8 +79,6 @@ import { PaginatePipe } from './pipe/paginate.pipe';
     VendedorPadreComponent,
     VendedorEditComponent,
     VendedorRegistrerComponent,
-    VendedorSearchComponent,
-    VendedorDeleteComponent,
     VendedorListComponent,
     IngresoPadreComponent,
     IngresoRegistrerComponent,
@@ -98,7 +93,10 @@ import { PaginatePipe } from './pipe/paginate.pipe';
     SalidaSearchComponent,
     SalidaDeleteComponent,
     SalidaListComponent,
-    PaginatePipe
+    PaginatePipe,
+    SearchPipe,
+    SearchLogPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -109,7 +107,8 @@ import { PaginatePipe } from './pipe/paginate.pipe';
     BrowserAnimationsModule,
     NgxPaginationModule,
     NgxSpinnerModule,
-    MaterialModule
+    MaterialModule,
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
   ],
   providers: [appRoutingProviders, CookieService,GuardianGuard,LoginService,DashboardService, ProductoService,VendedoresService,IngresoService  ],
   bootstrap: [AppComponent]

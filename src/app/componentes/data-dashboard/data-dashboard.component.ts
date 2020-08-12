@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-data-dashboard',
@@ -28,7 +29,8 @@ export class DataDashboardComponent implements OnInit {
 
   constructor(
     private dataService: DashboardService,
-    private spiner :NgxSpinnerService
+    private spiner :NgxSpinnerService,
+    private alertService: AlertService
   ) { 
     this.vendedoresNu=0;
     this.ingresosN=0;
@@ -78,9 +80,14 @@ export class DataDashboardComponent implements OnInit {
               
       },
       error =>{
-      alert("Servidor no encontrado");
+        this.spiner.hide();
+        if(error.status==0){
+          this.alertService.danger("Error de comunicación con el servidor");  
+        }
+        if(error.status==404){
+          this.alertService.danger(error.error.mensaje);  
+        }
       }
- 
     );
    }
 }

@@ -39,7 +39,7 @@ export class UsuarioRegisComponent implements OnInit {
   
 
   agregarUsuario(){
-    this._articleService. registerUser(this.user.value).subscribe(
+    this._articleService.registerUser(this.user.value).subscribe(
 
       response=>{
         if(response.estado=='ok'){
