@@ -24,31 +24,100 @@
      overflow: auto !important;
  }
 
- 
-
 th{
     background-color: #f1f3f4;
 }
 
 .table {
-    width: 100% !important;
+    width: 100%;
     margin-bottom: 0.3rem;
     color: #212529;
 }
 
 .container table{
- font-size: 14px;
+ font-size: 13px;
 }
 td{
     padding:0 !important;
     margin: 0 !important;
-    width: 6%;
+    width: 16% !important;
 }
 
-.anchotd{
-    margin: 0 auto !important;
-   
+.editButton{
+    padding: 3px 0px 0px 0px !important;
+    margin: 2px 6px 2px 0px !important;
+    width: 4vh;
 }
 
+.edIcon{
+    font-size: 19px !important;
+}
+.mat-form-field{
+    width : 100% !important;
+}
 
+#container-form{
+ margin-left: 4% ;
+ margin-right: 4% ;
+ border: 1px solid rgba(0,0,0,.125);
+ border-radius:0.45rem  0.45rem 0rem 0rem;
+ font-size: 13px;
+}
 
+.orden-form{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 1.2%;
+}
+
+.clearfix{
+    width: 5%;
+}
+
+#selectUser{
+ width: 51%;
+}
+
+.data-form-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.animacionForm{
+    animation: animacionForm 1s;
+}
+
+@keyframes animacionForm {
+    from { width: 60%; }
+    to { width: 100%; }    
+  }
+
+  #mostrarContra{
+   background-color: white  !important;
+   border: none !important;
+  }
+
+  .clearButton{
+    width: 0.5%;
+}
+
+.btn-contraseña{
+    border: none !important;
+    background-color: white !important;
+}
+
+.div-button{
+    display: flex;
+    justify-content:flex-end;
+}
+
+#body-modal{
+    display: flex;
+}
+.div-modal{
+ padding-left: 13%;
+}

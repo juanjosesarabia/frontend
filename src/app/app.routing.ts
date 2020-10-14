@@ -48,8 +48,7 @@ const appRoutes: Routes =[
 		   {path:'dashboard',component:DataDashboardComponent,canActivate:[GuardianGuard]},
 		   {path:'usuario',component:UsuarioPadreComponent,canActivate:[GuardianGuard],
 		     children:[
-				 {path:'',component:UsuarioRegisComponent,canActivate:[GuardianGuard]},
-				 {path:'gestion-usuario',component:UsuarioEditComponent,canActivate:[GuardianGuard]},
+				 {path:'',component:UsuarioEditComponent,canActivate:[GuardianGuard]},
 				 {path:'usuarios-delete',component:UsuarioSearchComponent,canActivate:[GuardianGuard]}			
 			 ],
 			},
@@ -63,10 +62,9 @@ const appRoutes: Routes =[
 			 ],
 			},
 			{path:'vendedor',component:VendedorPadreComponent,canActivate:[GuardianGuard],
-		     children:[
-				 {path:'',component:VendedorRegistrerComponent,canActivate:[GuardianGuard]},
-				 {path:'edit-vendedor',component:VendedorEditComponent,canActivate:[GuardianGuard]},
-				 {path:'list-vendedor',component:VendedorListComponent,canActivate:[GuardianGuard]},				
+		     children:[				
+				 {path:'',component:VendedorEditComponent,canActivate:[GuardianGuard]},
+				 {path:'vendedor-delete',component:VendedorListComponent,canActivate:[GuardianGuard]},				
 			 ],
 			},
 			{path:'ingreso',component:IngresoPadreComponent,canActivate:[GuardianGuard],

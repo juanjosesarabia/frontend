@@ -1,76 +1,20 @@
 
-.design-data{
+/*   para el nuevo modal       */
+.div-footer{
     display: flex;
-    justify-content: center;
-    border-radius: 0.45rem 0.45rem 0.45rem 0.45rem !important;
-    height: 80%;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 9px;
 }
-
-
-.input-form{
- width: 80%;
- min-height: 10% !important;
+.div-header{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding-top: 20px;
 }
-
-
-.div-button button{
-    width: 80%;
+.div-footer button {
+    margin-left: 5px;
 }
-.data-form{
-    width: 94%;
-}
-.container{
-    width: 47% !important;
-}
-
 .mat-form-field{
-    margin-top: 7px !important;
-}
-@media (max-width:890px){
-    .container{
-        width: 80% !important;
-    }
-    
-}
-
-
-#mensaje-data{
-    padding: 0;
-    width: 25%;
-    height: 24%;
-    position: absolute;
-    left: 48%;
-    top: 39%;
-    z-index: 0;
-    right: 35px;
-    font-size: small;
-    opacity: 0.9;
-    display: none;
-}
-.correcto-mensaje{
- background-color:#00923F;
- color: white;
- font-weight: bold; 
- opacity: 0.9;
- display: flex;
- justify-content: center;
- 
-}
-
-.error-mensaje{
-    background-color: #DB0D0D;
-    color: white;
-    font-weight: bold; 
-    opacity: 0.9;
-    display: flex;
-    justify-content: center;
-   
-   }
-
-#mensaje-data mat-card-header mat-card-title{
-   
-    color: white;
-}
-#fuente-p{
-    font-size: 16px;
+    width : 100% !important;
 }

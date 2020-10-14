@@ -4,13 +4,11 @@
 
 
   <div class="container table-responsive mt-2">
-
     <div class="contanier">
       <form>
         <mat-form-field *ngIf="data">
           <mat-label>Buscar Usuario</mat-label>
           <input matInput placeholder="Ingrese la cédula" [(ngModel)]="filtro" name="filtro">
-
 
         </mat-form-field>
       </form>
@@ -38,7 +36,7 @@
             <td class="item-fila">{{fila2.name}}</td>
             <td class="item-fila">{{fila2.email}}</td>
             <td class="item-fila">{{fila2.tipo_usuario}}</td>
-            <td class="item-fila">{{fila2.Eliminado}}</td>
+            <td class="item-fila">{{fila2.Eliminado |date:'medium'}}</td>
             
             <td class="item-fila">
               <button class="btn btn-warning editButton" title="Restaurar Usuario" data-toggle="modal" data-target="#modalRestaurar" 
@@ -70,7 +68,7 @@
   </div>
 
 <!-- Modal  Restarurar Usuario-->
-<div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog" #closeModal>
+<div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog"  data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -94,7 +92,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" #closemodal>No</button>
         <button type="submit" class="btn btn-secondary" (click)="restoreUser()">Si</button>
       </div>
     

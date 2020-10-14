@@ -23,7 +23,7 @@ export class UsuarioSearchComponent implements OnInit {
 
   page_size:number=10;
   page_number:number=1;
-  @ViewChild('closeModal') private closeModal: ElementRef;
+  @ViewChild('closemodal') closemodal;
   constructor(
     private dataService: UsuarioService,
     private spiner :NgxSpinnerService,
@@ -86,9 +86,9 @@ export class UsuarioSearchComponent implements OnInit {
     this.restaurarUsuario.patchValue({ id: fila.id,cc: fila.cedula, nombres:fila.name ,correo:fila.email});
   }
   restoreUser(){
-    this.closeModal.nativeElement.click();
     this.dataService.restoreUser(this.restaurarUsuario.value).subscribe(
       response =>{
+        this.closemodal.nativeElement.click();
         this.cargarDatosUsuarios();
         this.alertService.success(response.mensaje);
        

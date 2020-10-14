@@ -5,13 +5,14 @@
 
     <div class="contanier">
       <ngx-alerts></ngx-alerts>
-      <form>
+      <form class="div-search-button" *ngIf="data">
         <mat-form-field *ngIf="data">
           <mat-label>Buscar Usuario</mat-label>
           <input matInput placeholder="Ingrese la cédula" [(ngModel)]="filtro" name="filtro">
-
-
         </mat-form-field>
+        <button class="btn btn-success agregarButton" title="Agregar Usuario" data-toggle="modal" data-target="#agregarUsuario" >
+          <mat-icon >add_box</mat-icon>
+         </button>
       </form>
     </div>
 
@@ -304,3 +305,15 @@
 <ngx-spinner type="ball-spin-clockwise">
   <p style="font-size: 20px; color: white">Cargando...</p>
 </ngx-spinner>
+
+<!-- Modal Agregar Usuario-->
+<div class="modal fade" id="agregarUsuario" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" id="body-modal" class="div-modal">
+        <app-usuario-regis></app-usuario-regis>
+      </div>
+    
+    </div>
+  </div>
+</div>

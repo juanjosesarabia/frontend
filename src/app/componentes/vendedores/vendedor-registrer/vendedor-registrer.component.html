@@ -1,5 +1,82 @@
-<div class="div-contenido">
+<div class="container">
+  <div class="div-header">
     <h4>Registrar Vendedor</h4>
-    <mat-divider></mat-divider>
-
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <mat-divider></mat-divider>
+  <form class="data-form mt-3" novalidate (ngSubmit)="registrarUsuario()" id="registrarUser" [formGroup]="vendedor">
+    <div class="content">
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Cédula</mat-label>
+        <input matInput formControlName="cedula" placeholder="Ingrese la cédula" [(ngModel)]="vendedor.value.cedula">
+        <mat-icon matSuffix>perm_identity</mat-icon>
+        <mat-error *ngIf="vendedor.get('cedula').hasError('pattern') ">
+          Por favor ingrese una cédula válida
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('cedula').hasError('required')">
+          La cédula es <strong>obligatoria</strong>
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('cedula').hasError('minlength')">
+          La cédula debe tener minimo 5 digitos
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Juan" formControlName="nombres" [(ngModel)]="vendedor.value.nombres">
+        <mat-icon matSuffix>person_pin</mat-icon>
+        <mat-error *ngIf="vendedor.get('nombres').hasError('pattern') ">
+          Por favor ingrese un nombre válido
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('nombres').hasError('required')">
+          El nombre es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('nombres').hasError('minlength')">
+          El nombre debe tener minimo 4 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Perez" formControlName="apellidos" [(ngModel)]="vendedor.value.apellidos">
+        <mat-icon matSuffix>person_pin</mat-icon>
+        <mat-error *ngIf="vendedor.get('apellidos').hasError('pattern') ">
+          Por favor ingrese apellidos válidos
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('apellidos').hasError('required')">
+          Los apellidos son <strong>obligatorios</strong>
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('apellidos').hasError('minlength')">
+          Los apellidos debe tener minimo 4 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="300-0000-000" formControlName="telefono" [(ngModel)]="vendedor.value.telefono">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="vendedor.get('telefono').hasError('pattern') ">
+          Por favor ingrese un número válido
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('telefono').hasError('required')">
+          EL teléfono es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="vendedor.get('telefono').hasError('minlength')">
+          El teléfono debe tener minimo 7 caracteres
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="div-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal" #closemodal>Cancelar</button>
+      <button type="submit" class="btn btn-secondary" [disabled]="vendedor.invalid">Registrar Vendedor</button>
+    </div>
+  </form>
+</div>
+<ngx-alerts></ngx-alerts>
+<ngx-spinner type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

@@ -1,37 +1,57 @@
 <div class="div-contenido">
-    <h4>Lista de Vendedores</h4>
+    <h4>Listado de Vendedores Eliminados</h4>
     <mat-divider></mat-divider>
 
        
     <div class="container table-responsive mt-2 ">
-      <table class="table table-bordered  table-responsive">
+        <div class="contanier">
+            <ngx-alerts></ngx-alerts>
+            <form>
+              <mat-form-field *ngIf="data">
+                <mat-label>Buscar Vendedor</mat-label>
+                <input matInput placeholder="Ingrese la cédula" [(ngModel)]="filtro" name="filtro">
+      
+      
+              </mat-form-field>
+            </form>
+          </div>
+      <table class="table table-bordered  ">
 
           <thead>
 
               <tr>
                  
-                  <th scope="col" class="anchotd">Cédula</th>
+                  <th scope="col" class="anchoth">Cédula</th>
                   <th scope="col" class="anchotd">Nombres</th>
                   <th scope="col" class="anchotd">Apellidos</th>
                   <th scope="col" class="anchotd">Teléfono</th>
-                  
+                  <th scope="col" class="anchotd">Fecha Eliminación</th>
+                  <th scope="col" class="anchotd">Acciones</th>
               </tr>
           </thead>
           <tbody>
-              <div *ngIf="data; then data else sinData"></div>
-              <ng-template #data>
-                  <tr *ngFor="let fila of datos | paginate:page_size:page_number">
+              <div *ngIf="data; then data1 else sinData"></div>
+              <ng-template #data1>
+                  <tr *ngFor="let fila of datos |search:filtro | paginate:page_size:page_number">
                      
                       <td>{{fila.cedula}}</td>
                       <td >{{fila.nombres}}</td>
                       <td >{{fila.apellidos}}</td>
                       <td >{{fila.telefono}}</td>
+                      <td >{{fila.Eliminado |date:'medium' }}</td>
+                      <td class="item-fila">
+                        <button class="btn btn-warning editButton" title="Restaurar Vendedor" data-toggle="modal" data-target="#modalRestaurar" 
+                        (click)="dataModal(fila)">
+                          <mat-icon class="edIcon">restore</mat-icon>
+                        </button>
+                       
+                      </td>
                       
                   </tr>
               </ng-template>
               <ng-template #sinData>
                   <tr>
-                      <td colspan="9">Sin datos</td>
+                      <td colspan="6">Sin datos</td>
                   </tr>
               </ng-template>
 
@@ -39,7 +59,7 @@
           </tbody>
       </table>
       <mat-paginator [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
-          (page)="paginator($event)" showFirstLastButtons>
+          (page)="paginator($event)" showFirstLastButtons *ngIf="data">
       </mat-paginator>
 
      
@@ -47,4 +67,39 @@
   <ngx-spinner type="ball-spin-clockwise">
     <p style="font-size: 20px; color: white">Cargando...</p>
 </ngx-spinner>
+
+
+
+<!-- Modal  Restarurar Vendedor-->
+<div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">¿Desea restaurar Vendedor?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="body-modal" class="div-modal">
+          <div>
+            <p ><strong>Cédula:  </strong></p>
+            <p ><strong>Nombre:  </strong></p>
+            <p ><strong>Teléfono:  </strong></p>
+          </div>
+  
+          <div class="div-modal">
+            <p >{{cedula}}</p>
+            <p >    {{nombres}}  {{apellidos}} </p>
+            <p > {{telefono}}</p>
+          </div>        
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" #closemodal>No</button>
+          <button type="submit" class="btn btn-secondary" (click)="restoreVendedor()">Si</button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
   </div>
