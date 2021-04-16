@@ -38,7 +38,6 @@ export class LogComponent implements OnInit {
  public cargarDataLog(){
   this.spiner.show();
    this.dataService.getLog().subscribe(
-     
      response=>{      
        if(response.estado=="ok"){
        this.datos=response.datos;
@@ -49,7 +48,6 @@ export class LogComponent implements OnInit {
         this.spiner.hide();
       }, 1000);
        }
-
      },
      error=>{
       this.spiner.hide();
@@ -59,12 +57,7 @@ export class LogComponent implements OnInit {
       if(error.status==404){
         this.alertService.danger(error.error.mensaje);  
       }
-    
-     
-
      }
-
    );
-
  }
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators,FormGroup } from '@angular/forms';
 import { LoginService } from '../../../services/login.service';
 import { AlertService } from 'ngx-alerts';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-regis',
@@ -12,12 +12,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class UsuarioRegisComponent implements OnInit {
   public user: FormGroup;
-  @ViewChild('closemodal') closemodal;
 
   constructor(
     private _articleService:LoginService,
-    private spiner :NgxSpinnerService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private  _router : Router
   ) {
     this.user = new FormGroup({
       cedula: new FormControl('', [Validators.required, Validators.minLength(5),Validators.pattern('^[0-9]+$')]),
@@ -31,13 +30,14 @@ export class UsuarioRegisComponent implements OnInit {
 
   }
  
-
   agregarUsuario(){
     this._articleService.registerUser(this.user.value).subscribe(
       response=>{
-        this.alertService.success(response.mensaje);
-        this.closemodal.nativeElement.click();
-        this.user.patchValue({ cedula:"", name:"" ,email: "",password: ""});        
+        this.alertService.success(response.mensaje); 
+        this._router.navigate(['app/usuario'])
+          .then(() => {
+            window.location.reload();
+          });      
       },
       error=>{
         this.alertService.danger(error.error.mensaje);      

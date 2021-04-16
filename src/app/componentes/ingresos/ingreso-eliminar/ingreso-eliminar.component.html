@@ -1,0 +1,48 @@
+<div class="div-contenido">
+    <div class="modal-header">
+        <h5 class="modal-title">¿Deseas Eliminar el Ingreso?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <h6>Datos de Ingreso</h6>
+    <mat-divider></mat-divider>
+
+    <div class="div-datos">
+        <div class="div-label ">
+            <label for="">Fecha Ingreso:</label>
+            <label for="">Número de Acta:</label>
+            <label for="">Cantidad Ingresada:</label>
+        </div>
+        <div class="div-label">
+            <p>{{fecha}}</p>
+            <p>{{acta}}</p>
+            <p>{{cantidad}}</p>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <h6>Información del vendedor</h6>
+    <mat-divider></mat-divider>
+    <div class="div-datos">
+        <div class="div-label">
+            <label for="">Cédula:</label>
+            <label for="">Nombres:</label>
+            <label for="">Apellidos:</label>
+            <label for="">Teléfono:</label>
+        </div>
+
+        <div class="div-label">
+            <p>{{cedula}}</p>
+            <p>{{nombres}}</p>
+            <p>{{apellidos}}</p>
+            <p>{{telefono}}</p>
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"#closemodal>No</button>
+        <button type="submit" class="btn btn-secondary" (click)="eliminarIngreso()">Si</button>
+    </div>
+</div>

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {FormControl, Validators,FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { VendedoresService } from '../../../services/vendedores.service';
 
 @Component({
@@ -11,11 +11,10 @@ import { VendedoresService } from '../../../services/vendedores.service';
 })
 export class VendedorRegistrerComponent implements OnInit {
   public vendedor: FormGroup;
-  @ViewChild('closemodal') closemodal;
   constructor(
     private vendedorServ :VendedoresService,
-    private spiner :NgxSpinnerService,
     private alertService: AlertService,
+    private  _router : Router
   ) 
   {
    
@@ -35,8 +34,10 @@ export class VendedorRegistrerComponent implements OnInit {
       this.vendedorServ.addVendedor(this.vendedor.value).subscribe(
       response =>{
         this.alertService.success(response.mensaje);
-        this.closemodal.nativeElement.click();
-        this.vendedor.patchValue({ cedula:"", nombres:"" ,apellidos: "",telefono: ""}); 
+        this._router.navigate(['app/vendedor'])
+        .then(() => {
+          window.location.reload();
+        });  
       },
       error =>{
           this.alertService.danger(error.error.mensaje);  

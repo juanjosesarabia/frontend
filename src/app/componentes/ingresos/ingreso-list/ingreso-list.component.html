@@ -1,63 +1,94 @@
 <div class="div-contenido">
-    <h4>Lista de Ingresos</h4>
-    <mat-divider></mat-divider>
+    <h4>Ver Ingreso</h4>
 
-    <div class="container table-responsive mt-2 ">
-      <table class="table table-bordered  table-responsive">
+    <div class="estilo">
+        <div class=" div-ingreso">
+            <h6>Datos de Ingreso</h6>
+            <mat-divider></mat-divider>
+            <div class="div-vendedor-label">
+                <label for="">Fecha Ingreso:</label>
+                <label for="">Número de Acta:</label>
+                <label for="">Cantidad Ingresada:</label>
+            </div>
 
-          <thead>
+            <div class="div-vendedor-contenido prueba">
+                <p>{{datos["fechaIngreso"]}}</p>
+                <p>{{datos["numero_acta"]}}</p>
+                <p>{{datos["cantidadIngresada"]}}</p>
+            </div>
 
-              <tr>
-                 
-                  <th scope="col" class="anchotd">Cédula recibe</th>
-                  <th scope="col" class="anchotd">Nombre recibe</th>
-                  <th scope="col" class="anchotd">Fecha ingreso</th>
-                  <th scope="col" class="anchotd">N° Acta</th>
-                  <th scope="col" class="anchotd">Cantidad Ingresada</th>
-                  <th scope="col" class="anchotd">Operativo</th>
-                  <th scope="col" class="anchotd">Cédula vendedor</th>
-                  <th scope="col" class="anchotd">Nombres </th>
-                  <th scope="col" class="anchotd">Apellidos </th>
-                  <th scope="col" class="anchotd">Teléfono</th>
-                  
-              </tr>
-          </thead>
-          <tbody>
-              <div *ngIf="data; then data else sinData"></div>
-              <ng-template #data>
-                  <tr *ngFor="let fila of datos | paginate:page_size:page_number">
-                     
-                     <td>{{fila.cedulaNombreRecibe}}</td>
-                     <td>{{fila.nombreRecibe}}</td>
-                     <td>{{fila.fechaIngreso}}</td>
-                     <td>{{fila.numero_acta}}</td>
-                     <td>{{fila.cantidadIngresada}}</td>
-                     <td>{{fila.ubicacionOperativo}}</td>
-                      <td>{{fila.cedula}}</td>
-                      <td >{{fila.nombres}}</td>
-                      <td >{{fila.apellidos}}</td>
-                      <td >{{fila.telefono}}</td>
-                      
-                  </tr>
-              </ng-template>
-              <ng-template #sinData>
-                  <tr>
-                      <td colspan="9">Sin datos</td>
-                  </tr>
-              </ng-template>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="div-vendedor">
+            <h6>Información del vendedor</h6>
+            <mat-divider></mat-divider>
+            <div class="div-vendedor-label">
+                <label for="">Cédula:</label>
+                <label for="">Nombres:</label>
+                <label for="">Apellidos:</label>
+                <label for="">Teléfono:</label>
+            </div>
+
+            <div class="div-vendedor-contenido" *ngFor="let fila of datosVen">
+                <p>{{fila.cedula}}</p>
+                <p>{{fila.nombres}}</p>
+                <p>{{fila.apellidos}}</p>
+                <p>{{fila.telefono}}</p>
+
+            </div>
+
+        </div>
+        <mat-divider></mat-divider>
+        <div class="div-producto">
+            <h6>Información de los productos</h6>
+            <mat-divider></mat-divider>
 
 
-          </tbody>
-      </table>
-      <mat-paginator [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
-          (page)="paginator($event)" showFirstLastButtons>
-      </mat-paginator>
+            <table class="table table-bordered ">
 
-     
-  </div>
+                <thead>
 
-  </div>
+                    <tr>
+                        <th scope="col" class="anchoth1">Nombre</th>
+                        <th scope="col" class="anchoth2">Descripción</th>
+                        <th scope="col" class="anchoth3">Codigo Barra</th>
+                        <th scope="col" class="anchoth4">Cantidad</th>
+                        <th scope="col" class="anchoth5">Riesgo </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div *ngIf="data; then data1 else sinData"></div>
+                    <ng-template #data1>
+                        <tr *ngFor="let fila of datosPro">
+                            <td>{{fila.nombre}}</td>
+                            <td title="{{fila.descripcion}}">{{fila.descripcion}}</td>
+                            <td>{{fila.codigoBarra}}</td>
+                            <td>{{fila.cantidadUnitaria}}</td>
+                            <td>{{fila.riesgo}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #sinData>
+                        <tr>
+                            <td colspan="5">Sin datos</td>
+                        </tr>
+                    </ng-template>
 
-  <ngx-spinner type="ball-spin-clockwise">
-    <p style="font-size: 20px; color: white">Cargando...</p>
-</ngx-spinner>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="div-footer">
+            <div class="div-footer-left">
+                <div>
+                    <label for="">Recibió:</label>
+                    <p>{{datos["recibe"]}}</p>
+                </div>
+                <div>
+                    <label for="">Operativo:</label>
+                    <p>{{datos["operativo"]}}</p>
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Regresar</button>
+        </div>
+    </div>
+</div>

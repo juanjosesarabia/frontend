@@ -1,83 +1,62 @@
 import { Component, OnInit, DoCheck} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { Login } from '../../models/login';
+import { AlertService } from 'ngx-alerts';
+import {FormControl, Validators,FormGroup } from '@angular/forms';
 import { CookieService }  from 'ngx-cookie-service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers:[LoginService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public datosForm:any;
+  
   public mensaje:string;
-
-  
-  
-  
+  public datosForm: FormGroup;
+  hide = true;
   constructor(
     private _articleService:LoginService,
     private _route : ActivatedRoute,
     private  _router : Router,
+    private alertService: AlertService,
     private cookieService: CookieService,
-  
-
+    private spiner :NgxSpinnerService
   ) {
-    this.datosForm ={
-      email:'',
-      password:''
-    };
-   
+    this.datosForm = new FormGroup({
+      email: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
    }
 
-  ngOnInit(): void {
-    
-    
-  }
+  ngOnInit(): void { }
  
-
   validarInicio(){
-     var gif =document.getElementById("gif");
-        gif.style.display="block";
-    if(this.datosForm["email"].length!=0 && this.datosForm["password"].length!=0){
-    this._articleService.validarLogin(this.datosForm).subscribe(
-
+    this.spiner.show();
+    this._articleService.validarLogin(this.datosForm.value).subscribe(
       response =>{
-        gif.style.display="none";
         if(response.estado=='ok'){
           this.cookieService.set('cookie-T',response.success['token'],1);         
           this.cookieService.set('cookie-N',response.datos['name'],1);          
           this.cookieService.set('cookieT',response.datos['tipo'],1);         
           this._router.navigate(['app/dashboard']);
-          
+          this.spiner.hide();
         }
       },
       error=>{
         if(error.status==0){          
           this.mensaje="Conexion al servidor no encontrada";
-          var err =document.getElementById("errorM");
-           err.style.display="block";
-           gif.style.display="none";
-           setTimeout(function(){err.style.display="none";  }, 5000);
-        }else{         
+          this.alertService.danger(this.mensaje);  
+          this.spiner.hide();
+        }else{   
           this.mensaje=error.error.mensaje;
-          var err =document.getElementById("errorM");
-           err.style.display="block";
-           gif.style.display="none";
-           setTimeout(function(){err.style.display="none";  }, 5000);
-           
+          this.alertService.danger(this.mensaje); 
+          this.spiner.hide();
         }
-                     
-      
       }
-
       );
-    
-    }
   }
-  
 }

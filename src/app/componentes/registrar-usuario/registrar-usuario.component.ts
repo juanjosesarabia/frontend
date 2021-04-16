@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
+import { AlertService } from 'ngx-alerts';
+import {FormControl, Validators,FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,68 +13,58 @@ import { LoginService } from '../../services/login.service';
   providers:[LoginService]
 })
 export class RegistrarUsuarioComponent implements OnInit {
- public formCrearUsuario:any;
+ public formCrearUsuario:FormGroup;
  public mensaje:string;
 
 
 
   constructor(
     private _articleService:LoginService,
+    private alertService: AlertService,
+    private spiner :NgxSpinnerService,
+    private  _router : Router
   ) {
-    this.formCrearUsuario ={
+  /*  this.formCrearUsuario ={
       cedula:'',
       name:'',
       email:'',
       password:'',
       contrasena:''
      
-    };
+    }; */
+    this.formCrearUsuario = new FormGroup({
+      cedula:new FormControl('',[Validators.required, Validators.minLength(5),Validators.pattern('^[0-9]+$')]),
+      name: new FormControl('', [Validators.required, Validators.minLength(7),Validators.pattern('^[a-zA-Z ]*$')]),
+      email: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
    }
 
   ngOnInit(): void {  }
   
  
   registrarUsuario(){
-    var gif =document.getElementById("gif");
-        gif.style.display="block";
-    if(this.formCrearUsuario["email"].length!=0 && this.formCrearUsuario["password"].length!=0 && 
-    this.formCrearUsuario["cedula"].length!=0 && this.formCrearUsuario["name"].length!=0){
-      this._articleService. registerUser(this.formCrearUsuario).subscribe(
-  
+    this.spiner.show();
+       this._articleService.registerUser(this.formCrearUsuario.value).subscribe(
         response =>{
-          gif.style.display="none";
           if(response.estado=='ok'){
-            this.mensaje=response.mensaje;
-              var bien =document.getElementById("errorM");
-              bien.classList.add('alert-danger2');
-             
-              bien.style.display="block";
-               setTimeout(function(){bien.style.display="none";  }, 5000); 
-
+            this.spiner.hide();
+            this.alertService.success(response.mensaje);
+            this._router.navigate(['/']);
           }
         },
         error=>{
           if(error.status==0){          
             this.mensaje="Conexion al servidor no encontrada";
-            var err =document.getElementById("errorM");
-             err.style.display="block";
-             gif.style.display="none";
-             setTimeout(function(){err.style.display="none";  }, 5000);
+            this.alertService.danger(this.mensaje);  
+            this.spiner.hide();
           }else{   
-              this.mensaje=error.error.mensaje;
-              var err =document.getElementById("errorM");
-              err.classList.remove('alert-danger2');
-              err.classList.add('alert-danger');
-               err.style.display="block";
-               gif.style.display="none";
-              
-               setTimeout(function(){err.style.display="none";  }, 5000);            
+            this.mensaje=error.error.mensaje;
+            this.alertService.danger(this.mensaje); 
+            this.spiner.hide();
           }
         }
-  
         );
       
-      }
-    
   }
 }

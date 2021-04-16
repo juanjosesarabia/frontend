@@ -69,9 +69,7 @@ const appRoutes: Routes =[
 			},
 			{path:'ingreso',component:IngresoPadreComponent,canActivate:[GuardianGuard],
 		     children:[
-				 {path:'',component:IngresoRegistrerComponent,canActivate:[GuardianGuard]},
-				 {path:'edit-ingreso',component:IngresoEditComponent,canActivate:[GuardianGuard]},
-				 {path:'search-ingreso',component:IngresoSearchComponent,canActivate:[GuardianGuard]},
+				 {path:'',component:IngresoSearchComponent,canActivate:[GuardianGuard]},
 				 {path:'delete-ingreso',component:IngresoDeleteComponent,canActivate:[GuardianGuard]},
 				 {path:'list-ingreso',component:IngresoListComponent,canActivate:[GuardianGuard]},				
 			 ],

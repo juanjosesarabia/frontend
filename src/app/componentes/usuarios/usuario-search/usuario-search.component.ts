@@ -65,9 +65,7 @@ export class UsuarioSearchComponent implements OnInit {
 
       if(error.status==404){
         this.alertService.danger(error.error.mensaje);  
-      }
-             
-       
+      }      
      
      }
     );   
@@ -90,12 +88,10 @@ export class UsuarioSearchComponent implements OnInit {
       response =>{
         this.closemodal.nativeElement.click();
         this.cargarDatosUsuarios();
-        this.alertService.success(response.mensaje);
-       
-       
+        this.alertService.success(response.mensaje);      
       },
       error =>{
-          this.alertService.danger(error.error.mensaje);       
+        this.alertService.danger(error.error.mensaje);       
       }
   
       );

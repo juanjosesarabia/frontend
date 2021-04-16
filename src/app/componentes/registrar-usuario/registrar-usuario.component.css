@@ -2,20 +2,6 @@
   display: flex;
 }
 
-#gif{
-  margin: 0;
-  padding: 0;
-  width:  82px;
-  height: 73px;
-  display: none;
-}
-.gif{
-  margin: 0;
-  padding: 0;
-   display: flex;
-  justify-content: center;  
-  
- }
  .div-fondo{
   background-image: url(../../../assets/imagenes/fondo2.jpeg); 
   background-repeat: no-repeat;
@@ -48,38 +34,14 @@
   }    
 }
 
-.alert-danger{
-    background-color: #DB0D0D;
-    color: white;
-    font-weight: bold;
-    -webkit-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-   -moz-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-   box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-   border-radius: 10px;
-   display: none;
-   opacity: 0.8;
-   }
-
-   .alert-danger2{
-    background-color: #00923F;
-    border:1px solid #00923F;
-    color: white;
-    font-weight: bold;
-    -webkit-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-   -moz-box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-   box-shadow: -1px 2px 20px 0px rgba(0,0,0,0.39);
-   border-radius: 10px;
-   display: none;
-   }
    
    #crearCuenta{   
-      color: #fff;
-      background-color: #00923F;
-      border-color: #00923F;
-      -webkit-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
+    color: #fff;
+    background-color: #212529;
+    border-color:#212529;
+    -webkit-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
     -moz-box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
-    box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75);
-    
+    box-shadow: 7px 9px 20px -13px rgba(0,0,0,0.75); 
    }
    #btn-crearC:hover{
     color: #0a0a0a;
@@ -170,19 +132,6 @@
         margin-bottom: 0;;
       }
 
-      
-     input, .valid, input[type ="email"],input[type ="password"] {
-      border: 1px solid  #00923F;
-    } 
-    input:focus {
-      box-shadow: none;
-      border: 1px solid #F8C300;   
-   }
-   
-    input:hover {    
-      border: 1px solid #F8C300;    
-    }
-
     #containerMayor{
       position: relative;
       
@@ -199,6 +148,9 @@
     #title-crearU{
       text-align: center;
       padding-bottom: 0 !important;
+    }
+    .mat-form-field{
+      width : 100% !important;
     }
 
 

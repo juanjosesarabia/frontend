@@ -1,6 +1,116 @@
 <div class="div-contenido">
-    <h4>Eliminar Ingreso</h4>
-    <mat-divider></mat-divider>
+  <h4>Lista de Ingresos Eliminados</h4>
+  <mat-divider></mat-divider>
+  <div class="container table-responsive mt-2 ">
+    <div class="contanier">
+      <form *ngIf="data">
+        <mat-form-field>
+          <mat-label>Buscar Ingreso</mat-label>
+          <input matInput placeholder="Ingrese Cédula de vendedor" [(ngModel)]="filtro" name="filtro">
+        </mat-form-field>
+      </form>
+    </div>
+    <table class="table table-bordered ">
+
+      <thead>
+
+        <tr>
+          <th scope="col" class="anchotd">N° Acta</th>
+          <th scope="col" class="anchotd">Fecha ingreso</th>
+          <th scope="col" class="anchotd">Cantidad Ingresada</th>
+          <th scope="col" class="anchotd">Cédula vendedor</th>
+          <th scope="col" class="anchotd">Nombres </th>
+          <th scope="col" class="anchotd">Apellidos </th>
+          <th scope="col" class="anchotd">Teléfono</th>
+          <th scope="col" class="anchotd">Fecha Eliminación</th>
+          <th scope="col" class="anchotd">Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <div *ngIf="data; then data1 else sinData"></div>
+        <ng-template #data1>
+          <tr *ngFor="let fila of datos |search:filtro| paginate:page_size:page_number">
+            <td>{{fila.numero_acta}}</td>
+            <td>{{fila.fechaIngreso}}</td>
+            <td>{{fila.cantidadIngresada}}</td>
+            <td>{{fila.cedula}}</td>
+            <td>{{fila.nombres}}</td>
+            <td>{{fila.apellidos}}</td>
+            <td>{{fila.telefono}}</td>
+            <td>{{fila.deleted_at|date:'medium' }}</td>
+            <td>
+              <button class="btn btn-warning editButton" title="Restaurar Ingreso" data-toggle="modal" data-target="#modalRestaurar"
+                (click)="dataModal(fila)">
+                <mat-icon class="edIcon">restore</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #sinData>
+          <tr>
+            <td colspan="10">Sin datos</td>
+          </tr>
+        </ng-template>
+
+
+      </tbody>
+    </table>
+    <div class="container div-button" *ngIf="data">
+      <button class="btn btn-dark btn-sm">
+        Exportar a excel
+      </button>
+    </div>
+    <mat-paginator *ngIf="data" [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
+      (page)="paginator($event)" showFirstLastButtons>
+    </mat-paginator>
 
   </div>
+</div>
+<ngx-spinner type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+<ngx-alerts></ngx-alerts>
 
+<!-- Modal  Restarurar ingreso-->
+<div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">¿Desea restaurar Ingreso?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="body-modal" class="div-modal">
+        <div>
+          <p><strong>N° Acta:</strong></p>
+          <p><strong>Fecha ingreso:</strong></p>
+          <p><strong>Cantidad Ingresada:</strong></p>
+          <p><strong>Cédula vendedor:</strong></p>
+          <p><strong>Nombres:</strong></p>
+          <p><strong>Apellidos:</strong></p>
+          <p><strong>Teléfono:</strong></p>
+          <p><strong>Fecha Eliminación:</strong></p>
+        </div>
+
+        <div class="div-modal">
+          <p>{{numero_acta}}</p>
+          <p>{{fechaIngreso}}</p>
+          <p>{{cantidadIngresada}}</p>
+          <p>{{cedula}}</p>
+          <p>{{nombres}}</p>
+          <p>{{apellidos}}</p>
+          <p>{{telefono}}</p>
+          <p>{{deleted_at|date:'medium' }}</p>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" #closemodal>No</button>
+        <button type="submit" class="btn btn-secondary" (click)="restoreIngreso()">Si</button>
+      </div>
+
+    </div>
+  </div>
+</div>

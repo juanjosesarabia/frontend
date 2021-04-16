@@ -1,0 +1,20 @@
+.div-label{
+    display: flex;
+    justify-content: space-around;
+}
+.div-contenido{
+    height: 50vh !important;  
+}
+
+.div-label p{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.div-label label{
+    font-weight: 800;
+    font-size: 14px !important;
+}
+h6{
+    background-color: #f1f3f4;
+}
+

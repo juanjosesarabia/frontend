@@ -1,67 +1,60 @@
 <div class="div-contenedor">
     <div class="div-fondo"></div>
     <div class="login-form">
-        <form #loginForm="ngForm" (ngSubmit)=" loginForm.form.valid && validarInicio()">
-            <div class="container " id="containerMayor">
+        <form class="data-form mt-3" novalidate (ngSubmit)="validarInicio()" [formGroup]="datosForm">
+            <div class="container" id="containerMayor">
                 <div class="container">
-                    <div class="container  my-4" id="title-Inicio">
-                        <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logoInicio">
+                    <div class="container my-4" id="title-Inicio">
+                        <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logoInicio" />
                         <h5>INICIAR SESIÓN</h5>
                     </div>
 
-                    <div class=" form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/correo.png" alt="Icono correo">
-                            </span>
-                        </div>
-                        <input type="email" name="email" class="form-control" placeholder="Correo" #email="ngModel"
-                            [(ngModel)]="datosForm.email" required
-                            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email">
-                    </div>
-                    <p class="error" *ngIf="!email.valid && email.touched"><span>El correo es inválido</span></p>
-                    <p class="error" *ngIf="email.untouched ||email.valid"></p>
+                    <mat-form-field appearance="outline" class="input-form">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" placeholder="Ingrese el correo"
+                            [(ngModel)]="datosForm.value.email"  autofocus/>
+                        <mat-icon  class="icon-email"matSuffix>email</mat-icon>
+                        <mat-error *ngIf="datosForm.get('email').hasError('pattern')">
+                            Por favor ingrese un correo <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="datosForm.get('email').hasError('required')">
+                            EL correo es <strong>obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
 
-
-                    <div class="form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/contrasena.png" alt="Icono contraseña">
-                            </span>
-                        </div>
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña"
-                            #password="ngModel" [(ngModel)]="datosForm.password" required>
-                    </div>
-                    <p class="error" *ngIf="!password.valid && password.touched"> <span>La contraseña es
-                            obligatoria</span></p>
-                    <p class="error" *ngIf="password.untouched || password.valid"><span></span></p>
-
-
-                    <div class="form-group">
-                        <input type="submit" value="INICIAR SESIÓN" class="btn btn-block " id="iniciarSesion"
-                            [disabled]="loginForm.invalid">
-                    </div><br>
-                    <div class="gif">
-                        <img src="../../../assets/iconos/cargando.gif" alt="Cargando..." id="gif">
-                    </div>
-
-
-
-                    <div class="form-group ">
-                        <a id="btn-olvideC">¿Has olvidado la contraseña?</a>
-                    </div>
-                    <div class="form-group ">
-                        <a id="btn-crearC" [routerLink]="['/crear-usuario']">Crear una cuenta</a>
-                    </div>
+                    <mat-form-field appearance="outline" class="input-form">
+                        <mat-label>Contraseña</mat-label>
+                        <input type="text" matInput formControlName="password" placeholder="Ingrese su contraseña" 
+                            [type]="hide ? 'password' : 'text'" [(ngModel)]="datosForm.value.password" />
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="btn-contraseña">
+                            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="datosForm.get('password').hasError('required')">
+                            La contraseña es <strong>obligatoria</strong>
+                        </mat-error>
+                        <mat-error *ngIf="datosForm.get('password').hasError('minlength')">
+                            La contraseña debe tener minimo 6 caracteres
+                        </mat-error>
+                    </mat-form-field>
+                
+                <div class="form-group">
+                    <input type="submit" value="INICIAR SESIÓN" class="btn btn-block" id="iniciarSesion"
+                        [disabled]="datosForm.invalid" />
                 </div>
-                <div class="alert alert-danger" role="alert" id="errorM">
-                    {{mensaje}}
-                </div>
-
-            </div><br><br><br><br>
-
-
-
+            </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <a id="btn-olvideC">¿Has olvidado la contraseña?</a>
+            </div>
+            <div class="form-group">
+                <a id="btn-crearC" [routerLink]="['/crear-usuario']">Crear una cuenta</a>
+            </div>
         </form>
     </div>
 </div>
+<ngx-alerts></ngx-alerts>
+<ngx-spinner type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

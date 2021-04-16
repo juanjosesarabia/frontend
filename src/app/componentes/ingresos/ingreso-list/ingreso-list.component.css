@@ -10,7 +10,6 @@
    
    .contenedor-principal::-webkit-scrollbar {
        display: none !important;
-       
    }
 
    .div-contenido{
@@ -20,11 +19,9 @@
      background-clip: border-box;
      border: 1px solid rgba(0,0,0,.125);
      border-radius:0.45rem  0.45rem 0rem 0rem;
-     height: 105vh; 
+     height: 581px !important; 
      overflow: auto !important;
  }
-
- 
 
 th{
     background-color: #f1f3f4;
@@ -34,6 +31,7 @@ th{
     width: 100% !important;
     margin-bottom: 0.3rem;
     color: #212529;
+    overflow-y: auto !important;
 }
 
 .container table{
@@ -42,10 +40,109 @@ th{
 td{
     padding:0 !important;
     margin: 0 !important;
-   
 }
 
-.anchotd{
-    margin: 0 auto !important;
-   
+
+.mat-form-field{
+    width : 100% !important;
+}
+.div-button{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.estilo{
+     border: 1px solid rgba(0,0,0,.125);
+     border-radius:0.45rem  0.45rem 0rem 0rem;
+     margin-left: 7px;
+    margin-right: 7px;
+}
+
+
+.div-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 9px;
+    margin-right: 10px;
+}
+.div-footer .div-footer-left{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px !important;
+}
+.div-footer-left div{
+    display: flex;
+    margin-left: 10px !important;
+}
+.div-footer div label{
+    font-weight: 800;
+    padding: 0px 10px;
+}
+.div-footer-left p{
+    margin: 0px;
+}
+
+
+.div-vendedor-label label{
+    font-weight: 800;
+    font-size: 14px !important;
+}
+.div-vendedor-label, .div-vendedor-contenido{
+    display: flex;
+    padding-top: 5px;
+    justify-content: space-around;
+}
+
+.div-producto{
+    font-size: 14px !important;
+}
+h6{
+    background-color: #f1f3f4;
+}
+
+.modal-content {
+    height: 588px !important;
+}
+
+
+table {
+    width: 716px;
+    border-spacing: 0;
+}
+
+tbody, thead tr { display: block; }
+
+tbody {
+    height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody td, thead th {
+    width: 140px;
+}
+
+thead th:last-child {
+    width: 156px; 
+}
+
+.anchoth1{
+    width: 135px !important;;
+}
+.anchoth2{
+    width: 135px !important;
+}
+.anchoth3{
+    width: 134px !important;
+}
+.anchoth4{
+    width: 139px !important;
+}
+.anchoth5{
+    width: 130px !important;
+}
+.div-producto table{
+    font-size: 12px !important;
 }

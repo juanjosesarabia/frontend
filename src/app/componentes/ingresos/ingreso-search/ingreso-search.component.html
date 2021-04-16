@@ -1,6 +1,123 @@
+
 <div class="div-contenido">
-    <h4>Buscar Ingreso</h4>
-    <mat-divider></mat-divider>
+  <h4>Gestionar Ingresos</h4>
+  <mat-divider></mat-divider>
 
+  <div class="container table-responsive mt-2 ">
+      <div class="contanier">
+          <form class="div-search-button" *ngIf="data">
+            <mat-form-field>
+              <mat-label>Buscar Ingreso</mat-label>
+              <input matInput placeholder="Ingrese Cédula de vendedor" [(ngModel)]="filtro" name="filtro">    
+            </mat-form-field>
+            <button class="btn btn-success" title="Registrar Ingreso" data-toggle="modal" data-target="#agregarVendedor" >
+              <mat-icon id="icon-add" >add_box</mat-icon>
+             </button>
+          </form>
+        </div>
+    <table class="table table-bordered ">
+
+        <thead>
+
+            <tr>
+                <th scope="col" class="anchotd">N° Acta</th>
+                <th scope="col" class="anchotd">Fecha ingreso</th>
+                <th scope="col" class="anchotd">Cantidad Ingresada</th>
+                <th scope="col" class="anchotd">Cédula vendedor</th>
+                <th scope="col" class="anchotd">Nombres </th>
+                <th scope="col" class="anchotd">Apellidos </th>
+                <th scope="col" class="anchotd">Teléfono</th>
+                <th scope="col" class="anchotd">Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <div *ngIf="data; then data1 else sinData"></div>
+            <ng-template #data1>
+                <tr *ngFor="let fila of datos |search:filtro| paginate:page_size:page_number">
+                   <td>{{fila.numero_acta}}</td>
+                   <td>{{fila.fechaIngreso}}</td>
+                   <td>{{fila.cantidadIngresada}}</td>
+                   <td>{{fila.cedula}}</td>
+                   <td >{{fila.nombres}}</td>
+                   <td >{{fila.apellidos}}</td>
+                   <td >{{fila.telefono}}</td>
+                   <td > 
+                    <button class="btn btn-dark editButton" title="Imprimir Ingreso" >
+                      <mat-icon class="edIcon">print</mat-icon>
+                    </button>
+                    <button class="btn btn-success editButton" title="Ver Ingreso" data-toggle="modal" data-target="#verIngreso"(click)="ver(fila.id_ingreso)" >
+                      <mat-icon class="edIcon">remove_red_eye</mat-icon>
+                    </button>
+                    <button class="btn btn-warning editButton" title="Editar Ingreso" data-toggle="modal" data-target="#editarIngreso"(click)="editar(fila)" >
+                      <mat-icon class="edIcon">edit</mat-icon>
+                    </button>
+                    <button class="btn btn-danger editButton" title="Eliminar Ingreso" data-toggle="modal" data-target="#eliminarIngreso"(click)="eliminar(fila)">
+                      <mat-icon class="edIcon">delete</mat-icon>
+                    </button>
+                   </td>
+                </tr>
+            </ng-template>
+            <ng-template #sinData>
+                <tr>
+                    <td colspan="10">Sin datos</td>
+                </tr>
+            </ng-template>
+
+
+        </tbody>
+    </table>
+    <div class="container div-button" *ngIf="data">
+      <button class="btn btn-dark btn-sm">
+          Exportar a excel
+      </button>
   </div>
+    <mat-paginator *ngIf="data" [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
+        (page)="paginator($event)" showFirstLastButtons>
+    </mat-paginator>
 
+   
+</div>
+
+</div>
+
+<!-- Modal Ver Ingreso-->
+<div class="modal fade" id="verIngreso" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document" id="ancho-div">
+    <div class="modal-content">
+      <div class="modal-body" >
+       <app-ingreso-list [id]="id"></app-ingreso-list>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Ingreso-->
+<div class="modal fade" id="eliminarIngreso" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document" id="ancho-div">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <app-ingreso-eliminar [data]="dataIngreso" (emitUpdate)="actualizarP($event)"></app-ingreso-eliminar>
+      </div>
+    
+    </div>
+  </div>
+</div>
+<!-- Modal Editar Ingreso-->
+<div class="modal fade" id="editarIngreso" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document" id="ancho-div">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <app-ingreso-edit [data]="editIngreso"></app-ingreso-edit>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+<ngx-spinner type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+<ngx-alerts></ngx-alerts>

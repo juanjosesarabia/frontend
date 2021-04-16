@@ -1,5 +1,5 @@
 import {Injectable}from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
+import {HttpClient,HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Global } from '../services/global';
 import { CookieService }  from 'ngx-cookie-service';
@@ -45,6 +45,10 @@ export class VendedoresService{
 
     addVendedor(body):Observable<any>{   // Agregar vendedor
         return this._http.post(this.url+"registerVendedor",body,{headers:this.headers});    
+    }
+
+    searchVendedor(body):Observable<any>{   // Obtener vendedor  por cédula
+        return this._http.get(this.url+"searchVendedorCc/"+body,{headers:this.headers});    
     }
     
 

@@ -1,6 +1,103 @@
-<div class="div-contenido">
-    <h4>Editar Ingreso</h4>
+<div class="div-contenido ">
+  <h4>Editar Ingreso</h4>
+  <div class=" data-edit">
+    <h6>Datos de Ingreso</h6>
     <mat-divider></mat-divider>
+    <div class="container">
+    <form class="data-form mt-3" novalidate (ngSubmit)="editarIngreso()" [formGroup]="editIngreso">
 
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Número de Acta</mat-label>
+        <input matInput placeholder="35785" formControlName="numero_acta" [(ngModel)]="editIngreso.value.numero_acta">
+        <mat-icon matSuffix>format_list_numbered</mat-icon>
+        <mat-error *ngIf="editIngreso.get('numero_acta').hasError('pattern') ">
+          Por favor ingrese un número de acta válido
+        </mat-error>
+        <mat-error *ngIf="editIngreso.get('numero_acta').hasError('required')">
+          El número de acta es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="editIngreso.get('numero_acta').hasError('minlength')">
+          El número de acta debe tener minimo 3 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Fecha de Ingreso</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="fechaIngreso"
+          [(ngModel)]="editIngreso.value.fechaIngreso">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        <mat-error *ngIf="editIngreso.get('fechaIngreso').hasError('pattern') ">
+          Por favor ingrese una fecha válida
+        </mat-error>
+        <mat-error *ngIf="editIngreso.get('fechaIngreso').hasError('required')">
+          La fecha es obligatoria <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="editIngreso.get('fechaIngreso').hasError('minlength')">
+          La fecha debe tener minimo 8 caracteres
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Ubicación del Operativo</mat-label>
+        <input matInput placeholder="Centro historico" formControlName="ubicacionOperativo"
+          [(ngModel)]="editIngreso.value.ubicacionOperativo">
+        <mat-icon matSuffix>location_on</mat-icon>
+        <mat-error *ngIf="editIngreso.get('ubicacionOperativo').hasError('pattern') ">
+          Por favor ingrese ubicación del operativo.
+        </mat-error>
+        <mat-error *ngIf="editIngreso.get('ubicacionOperativo').hasError('required')">
+          La ubicación del operativo es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="editIngreso.get('ubicacionOperativo').hasError('minlength')">
+          La ubicación del operativo debe tener minimo 5 caracteres.
+        </mat-error>
+      </mat-form-field>
+      <div class=" data-edit">
+      <h6>Datos del Vendedor</h6>
+
+      <div class="contenedor-vendedor">
+        <div class="contenedor-vendedor-div">
+          <p><span>Cédula:</span> {{cedula}}</p>
+          <p><span>Nombre:</span> {{nombre}}</p>
+        </div>
+        <div class="contenedor-vendedor-button">
+          <button type="button" class="btn btn-secondary btn-sm" title="Cambiar Vendedor" (click)="activarInput()">
+            <mat-icon class="edIcon">edit</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="container data-search-ven" *ngIf="inputDat">
+        <form class="data-form mt-3" novalidate (ngSubmit)="buscarVendedor()" [formGroup]="vendedor">
+          <mat-form-field appearance="outline" class="input-form">
+            <mat-label>Buscar Vendedor por Cédula</mat-label>
+            <input matInput placeholder="Cédula del vendedor" formControlName="cedula">
+            <mat-icon matSuffix>perm_identity</mat-icon>
+
+            <mat-error *ngIf="vendedor.get('cedula').hasError('pattern')">
+              Por favor ingrese una cédula válida
+            </mat-error>
+            <mat-error *ngIf="vendedor.get('cedula').hasError('required')">
+              La cédula es <strong>obligatoria</strong>
+            </mat-error>
+            <mat-error *ngIf="vendedor.get('cedula').hasError('minlength')">
+              La cédula debe tener minimo 5 digitos
+            </mat-error>
+          </mat-form-field>
+          <div class="data-search-ven-search">
+            <button type="submit" class="btn btn-secondary"  title="Buscar Vendedor" [disabled]="vendedor.invalid"> <mat-icon matSuffix>search</mat-icon></button>
+          </div>
+        </form>
+      </div>
+    </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" #closemodal (click)="cerrar()">Cancelar</button>
+        <button type="submit" class="btn btn-secondary" [disabled]="editIngreso.invalid">Actualizar Ingreso</button>
+      </div>
+    </form>
   </div>
-
+  </div>
+</div>

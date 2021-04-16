@@ -1,109 +1,81 @@
 <div class="div-contenedor">
     <div class="div-fondo"></div>
     <div class="login-form">
-        <form #crearUsuario="ngForm" (ngSubmit)="registrarUsuario()" id="formCrearUsuario">
+        <form  class="data-form mt-3" novalidate (ngSubmit)="registrarUsuario()" [formGroup]="formCrearUsuario">
             <div class="container " id="containerMayor">
                 <div class="container">
                     <div class="container  my-4" id="title-crearU">
                         <img src="../../assets/imagenes/logo.png" alt="LOGO SIBEPct" id="logoInicio">
                         <h5>CREAR USUARIO</h5>
-
                     </div>
+                    <mat-form-field appearance="outline" class="input-form">
+                        <mat-label>Cédula</mat-label>
+                        <input matInput formControlName="cedula" autofocus>
+                        <mat-icon matSuffix>perm_identity</mat-icon>
+                        <mat-error *ngIf="formCrearUsuario.get('cedula').hasError('pattern') ">
+                          Por favor ingrese una cédula válida
+                        </mat-error>
+                        <mat-error *ngIf="formCrearUsuario.get('cedula').hasError('required')">
+                          La cédula es <strong>obligatoria</strong>
+                        </mat-error>
+                        <mat-error *ngIf="formCrearUsuario.get('cedula').hasError('minlength')">
+                          La cédula debe tener minimo 5 digitos
+                        </mat-error>
+                      </mat-form-field>
 
-                    <div class=" form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/cedula.png" alt="Icono cédula">
-                            </span>
-                        </div>
-
-                        <input type="number" name="cedula" class="form-control" placeholder="Número de cédula"
-                            #cedula="ngModel" [(ngModel)]="formCrearUsuario.cedula" required pattern="^[0-9]+$">
-                    </div>
-                    <p class="error" *ngIf="!cedula.valid && cedula.touched"><span>La cédula es inválida</span></p>
-                    <p class="error" *ngIf="cedula.untouched ||cedula.valid"><span></span></p>
-
-
-                    <div class=" form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/nombre.png" alt="Icono usuario">
-                            </span>
-                        </div>
-                        <input type="text" name="name" class="form-control" placeholder="Nombres completos"
-                            #name="ngModel" [(ngModel)]="formCrearUsuario.name" required pattern="^[a-zA-Z ]*$">
-                    </div>
-                    <p class="error" *ngIf="!name.valid && name.touched"><span>El nombre es inválido</span></p>
-                    <p class="error" *ngIf="name.untouched || name.valid"><span></span></p>
-
-
-                    <div class=" form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/correo.png" alt="Icono correo">
-                            </span>
-                        </div>
-                        <input type="email" name="email" class="form-control" placeholder="Correo" #email="ngModel"
-                            [(ngModel)]="formCrearUsuario.email" required
-                            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
-                    </div>
-                    <p class="error" *ngIf="!email.valid && email.touched"><span>El correo es inválido</span></p>
-                    <p class="error" *ngIf="email.untouched||email.valid"><span></span></p>
-
-
-                    <div class="form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/contrasena.png" alt="Icono contraseña">
-                            </span>
-                        </div>
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña"
-                            #password="ngModel" [(ngModel)]="formCrearUsuario.password" required>
-                    </div>
-                    <p class="error" *ngIf="!password.valid && password.touched"> <span>La contraseña es
-                            obligatoria</span>
-                    </p>
-                    <p class="error" *ngIf="password.untouched||password.valid"><span></span></p>
-
-                    <div class="form-group input-group validar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <img src="../../assets/iconos/contrasena.png" alt="Icono contraseña">
-                            </span>
-                        </div>
-                        <input type="password" name="contrasena" class="form-control" placeholder=" Repetir Contraseña"
-                            #contrasena="ngModel" [(ngModel)]="formCrearUsuario.contrasena" required>
-                    </div>
-                    <p class="error" *ngIf="!contrasena.valid && contrasena.touched"> <span>La comprobación de
-                            contraseña es obligatoria</span>
-                    </p>
-                    <p class="error" *ngIf="contrasena.untouched ||contrasena.valid"><span></span></p>
-                    <p class="error" *ngIf="contrasena.value!=password.value"><span>Las contraseñas ingresadas no
-                            coinciden</span></p>
-
-
+                      <mat-form-field appearance="outline" class="input-form">
+                        <mat-label>Nombres Completos</mat-label>
+                        <input matInput placeholder="Juanito Pérez" formControlName="name">
+                        <mat-icon matSuffix>person_pin</mat-icon>
+                        <mat-error *ngIf="formCrearUsuario.get('name').hasError('pattern') ">
+                          Por favor ingrese un nombre válido
+                        </mat-error>
+                        <mat-error *ngIf="formCrearUsuario.get('name').hasError('required')">
+                          El nombre es <strong>obligatorio</strong>
+                        </mat-error>
+                        <mat-error *ngIf="formCrearUsuario.get('name').hasError('minlength')">
+                          El nombre debe tener minimo 7 caracteres
+                        </mat-error>
+                      </mat-form-field>
+                      
+                    <mat-form-field appearance="outline" class="input-form">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" placeholder="Ingrese el correo"
+                            [(ngModel)]="formCrearUsuario.value.email"/>
+                        <mat-icon  class="icon-email"matSuffix>email</mat-icon>
+                        <mat-error *ngIf="formCrearUsuario.get('email').hasError('pattern')">
+                            Por favor ingrese un correo <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="formCrearUsuario.get('email').hasError('required')">
+                            EL correo es <strong>obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+                 
+                    <mat-form-field appearance="outline" class="input-form">
+                        <mat-label>Contraseña</mat-label>
+                        <input type="password" matInput formControlName="password">
+                        <mat-icon matSuffix>vpn_key</mat-icon>
+                        <mat-error *ngIf="formCrearUsuario.get('password').hasError('minlength')">
+                          La contraseña debe tener minimo 6 caracteres
+                        </mat-error>
+                        <mat-error *ngIf="formCrearUsuario.get('password').hasError('required')">
+                          La contraseña es <strong>obligatoria</strong>
+                        </mat-error>
+                      </mat-form-field>
                     <div class="form-group">
-                        <input type="submit" value="CREAR USUARIO" class="btn btn-block " id="crearCuenta"
-                            [disabled]="crearUsuario.invalid">
+                        <input type="submit" value="CREAR USUARIO" class="btn btn-secondary btn-block " id="crearCuenta"
+                            [disabled]="formCrearUsuario.invalid">
                     </div><br>
-                    <div class="gif">
-                        <img src="../../../assets/iconos/cargando.gif" alt="Cargando..." id="gif">
-                    </div>
                     <div class="form-group ">
                         <p id="tenerCuenta">¿Tienes una cuenta? </p>
                         <a id="btn-crearC" [routerLink]="['/']">Iniciar Sesión</a>
                     </div>
-
-
                 </div>
-                <div class="alert alert-danger" role="alert" id="errorM">
-                    {{mensaje}}
-                </div>
-
             </div><br><br><br><br>
-
-
-
         </form>
     </div>
 </div>
+<ngx-alerts></ngx-alerts>
+<ngx-spinner type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

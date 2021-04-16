@@ -58,6 +58,11 @@
 
           </tbody>
       </table>
+      <div class="container div-button" *ngIf="data">
+        <button class="btn btn-dark btn-sm">
+            Exportar a excel
+        </button>
+    </div>
       <mat-paginator [length]="[datos.length]" [pageSize]="page_size" [pageSizeOptions]="[5, 10,20,50, 100]"
           (page)="paginator($event)" showFirstLastButtons *ngIf="data">
       </mat-paginator>
