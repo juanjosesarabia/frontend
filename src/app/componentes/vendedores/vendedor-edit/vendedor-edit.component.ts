@@ -135,9 +135,10 @@ export class VendedorEditComponent implements OnInit {
       error =>{
           this.alertService.danger(error.error.mensaje);       
       }
-  
       );
-
   }
+  actualizarV(event):void{
+    this.cargarDataVend();
+   }
 
 }

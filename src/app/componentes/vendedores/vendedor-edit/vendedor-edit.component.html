@@ -6,7 +6,7 @@
 
     <div >
      
-      <form class="div-search-button" *ngIf="data">
+      <form class="div-search-button" >
         <mat-form-field id="mat-fiel">
           <mat-label>Buscar Vendedor</mat-label>
           <input matInput placeholder="Ingrese la cédula" [(ngModel)]="filtro" name="filtro">
@@ -185,7 +185,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body" id="body-modal" class="div-modal">
-        <app-vendedor-registrer></app-vendedor-registrer> 
+        <app-vendedor-registrer (emitUpdate)="actualizarV($event)"></app-vendedor-registrer> 
       </div>
     
     </div>

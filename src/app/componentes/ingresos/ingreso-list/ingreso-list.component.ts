@@ -42,8 +42,7 @@ export class IngresoListComponent implements OnInit {
     this.spiner.show();
     this.ingresoServ.getIngreOne(this.id).subscribe(
       
-      response=>{  
-       
+      response=>{
         this.datos=response.ingreso;
         this.datosPro=response.productos;
         this.datosVen=response.vendedor;
@@ -58,7 +57,6 @@ export class IngresoListComponent implements OnInit {
         if(error.status==0){
           this.alertService.danger("Error de comunicación con el servidor");  
         }
-
         if(error.status==404){
           this.alertService.danger(error.error.mensaje);  
         }     

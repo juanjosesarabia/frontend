@@ -5,7 +5,7 @@
 
   <div class="container table-responsive mt-2 ">
       <div class="contanier">
-          <form class="div-search-button" *ngIf="data">
+          <form class="div-search-button">
             <mat-form-field>
               <mat-label>Buscar Ingreso</mat-label>
               <input matInput placeholder="Ingrese Cédula de vendedor" [(ngModel)]="filtro" name="filtro">    
@@ -43,7 +43,7 @@
                    <td >{{fila.apellidos}}</td>
                    <td >{{fila.telefono}}</td>
                    <td > 
-                    <button class="btn btn-dark editButton" title="Imprimir Ingreso" >
+                    <button class="btn btn-dark editButton" title="Imprimir Ingreso" (click)="imprimirPdf(fila.id_ingreso)">
                       <mat-icon class="edIcon">print</mat-icon>
                     </button>
                     <button class="btn btn-success editButton" title="Ver Ingreso" data-toggle="modal" data-target="#verIngreso"(click)="ver(fila.id_ingreso)" >
@@ -109,7 +109,7 @@
   <div class="modal-dialog" role="document" id="ancho-div">
     <div class="modal-content">
       <div class="modal-body" >
-        <app-ingreso-edit [data]="editIngreso"></app-ingreso-edit>
+        <app-ingreso-edit [data]="editIngreso"(emitUpdate)="actualizarP($event)"></app-ingreso-edit>
       </div>
     
     </div>

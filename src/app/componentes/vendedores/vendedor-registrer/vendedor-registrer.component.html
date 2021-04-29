@@ -6,7 +6,7 @@
     </button>
   </div>
   <mat-divider></mat-divider>
-  <form class="data-form mt-3" novalidate (ngSubmit)="registrarUsuario()" id="registrarUser" [formGroup]="vendedor">
+  <form class="data-form mt-3" novalidate #formDirective="ngForm" (ngSubmit)="registrarUsuario(formDirective)" id="registrarUser" [formGroup]="vendedor">
     <div class="content">
 
       <mat-form-field appearance="outline" class="input-form">
@@ -71,7 +71,7 @@
 
     </div>
     <div class="div-footer">
-      <button type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal" #closet>Cancelar</button>
       <button type="submit" class="btn btn-secondary" [disabled]="vendedor.invalid">Registrar Vendedor</button>
     </div>
   </form>

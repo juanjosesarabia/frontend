@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import {FormControl, Validators,FormGroup } from '@angular/forms';
+import { Component, OnInit, Output,EventEmitter, ViewChild,ElementRef} from '@angular/core';
+import {FormControl, Validators,FormGroup, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { VendedoresService } from '../../../services/vendedores.service';
@@ -7,14 +7,16 @@ import { VendedoresService } from '../../../services/vendedores.service';
 @Component({
   selector: 'app-vendedor-registrer',
   templateUrl: './vendedor-registrer.component.html',
-  styleUrls: ['./vendedor-registrer.component.css']
+  styleUrls: ['./vendedor-registrer.component.css'],
+  providers:[FormGroupDirective]
 })
 export class VendedorRegistrerComponent implements OnInit {
   public vendedor: FormGroup;
+  @Output() emitUpdate: EventEmitter<number> = new EventEmitter<number>();
+  @ViewChild("closet") closet: ElementRef;
   constructor(
     private vendedorServ :VendedoresService,
     private alertService: AlertService,
-    private  _router : Router
   ) 
   {
    
@@ -30,14 +32,14 @@ export class VendedorRegistrerComponent implements OnInit {
     
   }
  
-  registrarUsuario(){   
+  registrarUsuario( formDirective: FormGroupDirective){   
       this.vendedorServ.addVendedor(this.vendedor.value).subscribe(
       response =>{
         this.alertService.success(response.mensaje);
-        this._router.navigate(['app/vendedor'])
-        .then(() => {
-          window.location.reload();
-        });  
+        formDirective.resetForm();
+        this.vendedor.reset();      
+        this.closet.nativeElement.click();
+        this.emitUpdate.emit(1); 
       },
       error =>{
           this.alertService.danger(error.error.mensaje);  
