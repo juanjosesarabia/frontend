@@ -1,0 +1,43 @@
+<div class="container" > <!--Eliminar Vendedor-->
+    <div class="div-header">
+        <h4>Eliminar Vendedor</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="data-form mt-3" novalidate (ngSubmit)="eliminarVen()" [formGroup]="vendedorE">
+        <div class="container">
+          <div class="orden-form">
+            <mat-form-field appearance="outline" class="input-form">
+              <mat-label>Cédula del Vendedor</mat-label>
+              <input type="text" matInput formControlName="cedula">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-form">
+              <mat-label>Nombres del Vendedor</mat-label>
+              <input type="text" matInput formControlName="nombres">
+            </mat-form-field>
+          </div>
+          <div class="clearfix"></div>
+          <div class="orden-form">
+            <mat-form-field appearance="outline" class="input-form">
+              <mat-label>Apellidos del Vendedor</mat-label>
+              <input type="text" matInput formControlName="apellidos">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-form">
+              <mat-label>teléfono</mat-label>
+              <input type="text" matInput formControlName="telefono">
+            </mat-form-field>
+          </div>
+          <div class="div-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" #closet>Cancelar</button>
+              <button type="submit" type="submit" class="btn btn-secondary">Eliminar Vendedor</button>
+          </div>
+        </div>
+      </form>
+    
+  </div>
+
+<ngx-alerts></ngx-alerts>
+<ngx-spinner type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

@@ -20,10 +20,10 @@ export class VendedorEditComponent implements OnInit {
   public data :boolean;
   public editV:boolean;
   public eliminarV:boolean;
-  public vendedor: FormGroup;
   p:number=1;
   public vendedorE: FormGroup;
-  
+  public vendedorDelete;
+  public vendedorEdit;
  
    page_size:number=5;
    page_number:number=1;
@@ -34,23 +34,6 @@ export class VendedorEditComponent implements OnInit {
     private alertService: AlertService,
     ) { 
     this.data=false;
-    this.editV=false;
-    this.eliminarV=false;
-    this.vendedor = new FormGroup({
-      id: new  FormControl(),
-      cedula: new FormControl('', [Validators.required, Validators.minLength(5),Validators.pattern('^[0-9]+$')]),
-      nombres: new FormControl('', [Validators.required, Validators.minLength(4),Validators.pattern('^[a-zA-Z ]*$')]),
-      apellidos: new FormControl('', [Validators.required, Validators.minLength(7),Validators.pattern('^[a-zA-Z ]*$')]),
-      telefono: new FormControl('', [Validators.required, Validators.minLength(5),Validators.pattern('^[0-9]+$')]),
-    });
-
-    this.vendedorE = new FormGroup({
-      id: new  FormControl(),
-      cedula: new FormControl({value:'', disabled: true}),
-      nombres: new FormControl({value:'', disabled: true}),
-      apellidos: new FormControl({value:'', disabled: true}),
-      telefono: new FormControl({value:'', disabled: true})
-    });
     }
 
   paginator(e:PageEvent){
@@ -60,6 +43,12 @@ export class VendedorEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarDataVend();
+  }
+  delete(fila){
+    this.vendedorDelete=fila;
+  }
+  edit(fila){
+    this.vendedorEdit=fila;
   }
 
   public cargarDataVend(){
@@ -83,59 +72,8 @@ export class VendedorEditComponent implements OnInit {
         if(error.status==404){
           this.alertService.danger(error.error.mensaje);  
         }
- 
       }
- 
     );
- 
-  }
-
-  abrirForm(fila){
-   this.eliminarV=false;
-   this.editV=true;
-   this.vendedor.patchValue({ id: fila.id,cedula: fila.cedula, nombres:fila.nombres ,apellidos:fila.apellidos,telefono:fila.telefono});    
-  }
-
-  editarVendedor(){     
-    this.vendedorServ.editVendedor(this.vendedor.value).subscribe(
-    response =>{
-      this.alertService.success(response.mensaje);
-      this.editV=false;
-      this.cargarDataVend();
-    },
-    error =>{
-        this.alertService.danger(error.error.mensaje);       
-    }
-
-    );
-  }
-
-  cerrar(){
-    this.editV=false;
-  }
-
-  abrirFormEliminar(fila){
-    this.editV=false;
-    this.eliminarV=true;
-    this.vendedorE.patchValue({ id: fila.id,cedula: fila.cedula, nombres:fila.nombres ,apellidos:fila.apellidos,telefono:fila.telefono});    
-   }
-
-  cerrar1(){
-    this.eliminarV=false;
-  }
-
-  eliminarVen(){
-
-    this.vendedorServ.eliminarVendedor(this.vendedorE.value).subscribe(
-      response =>{
-        this.alertService.success(response.mensaje);
-        this.eliminarV=false;
-        this.cargarDataVend();
-      },
-      error =>{
-          this.alertService.danger(error.error.mensaje);       
-      }
-      );
   }
   actualizarV(event):void{
     this.cargarDataVend();

@@ -53,6 +53,8 @@ import { SearchPipe } from './pipe/search.pipe';
 import { AlertModule } from 'ngx-alerts';
 import { SearchLogPipe } from './pipe/search-log.pipe';
 import { IngresoEliminarComponent } from './componentes/ingresos/ingreso-eliminar/ingreso-eliminar.component';
+import { VendedorDeleteComponent } from './componentes/vendedores/vendedor-delete/vendedor-delete.component';
+import { VendedorEditarComponent } from './componentes/vendedores/vendedor-editar/vendedor-editar.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { IngresoEliminarComponent } from './componentes/ingresos/ingreso-elimina
     SearchPipe,
     SearchLogPipe,
     IngresoEliminarComponent,
+    VendedorDeleteComponent,
+    VendedorEditarComponent,
 
   ],
   imports: [

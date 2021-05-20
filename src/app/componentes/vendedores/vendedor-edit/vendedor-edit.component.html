@@ -4,8 +4,7 @@
   <ngx-alerts></ngx-alerts>
   <div class="container table-responsive mt-2 ">
 
-    <div >
-     
+    <div >     
       <form class="div-search-button" >
         <mat-form-field id="mat-fiel">
           <mat-label>Buscar Vendedor</mat-label>
@@ -36,10 +35,10 @@
             <td class="item-fila">{{fila.apellidos}}</td>
             <td class="item-fila">{{fila.telefono}}</td>
             <td class="item-fila">
-              <button class="btn btn-warning editButton" title="Editar Vendedor" (click)="abrirForm(fila)">
+              <button class="btn btn-warning editButton" title="Editar Vendedor" data-toggle="modal" data-target="#editarVendedor" (click)="edit(fila)">
                 <mat-icon class="edIcon">edit</mat-icon>
               </button>
-              <button class="btn btn-danger editButton" title="Eliminar Vendedor" (click)="abrirFormEliminar(fila)">
+              <button class="btn btn-danger editButton" title="Eliminar Vendedor" data-toggle="modal" data-target="#eliminarVendedor" (click)="delete(fila)">
                 <mat-icon class="edIcon">delete</mat-icon>
               </button>
             </td>
@@ -56,128 +55,6 @@
       (page)="paginator($event)" showFirstLastButtons *ngIf="data">
     </mat-paginator>
   </div>
-
-  <div class="container" class="animacionForm" *ngIf="editV">
-    <!--Editar Vendedor-->
-    <div id="container-form">
-      <form class="data-form mt-3" novalidate (ngSubmit)="editarVendedor()" id="formEditUser" [formGroup]="vendedor">
-        <h6>Información de vendedor a editar </h6>
-        <mat-divider></mat-divider>
-        <div class="orden-form">
-          <mat-form-field appearance="outline" class="input-form">
-            <mat-label>Cédula</mat-label>
-            <input matInput formControlName="cedula" id="nameValue" [(ngModel)]="vendedor.value.cedula">
-            <mat-error *ngIf="vendedor.get('cedula').hasError('pattern') ">
-              Por favor ingrese una cédula válida
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('cedula').hasError('required')">
-              La cédula es <strong>obligatoria</strong>
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('cedula').hasError('minlength')">
-              La cédula debe tener minimo 5 digitos
-            </mat-error>
-          </mat-form-field>
-
-          <div class="clearfix"></div>
-
-          <mat-form-field appearance="outline" class="input-form">
-            <mat-label>Nombres</mat-label>
-            <input matInput placeholder="Juanito" formControlName="nombres" [(ngModel)]="vendedor.value.nombres">
-            <mat-error *ngIf="vendedor.get('nombres').hasError('pattern') ">
-              Por favor ingrese un nombre válido
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('nombres').hasError('required')">
-              El nombre es <strong>obligatorio</strong>
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('nombres').hasError('minlength')">
-              El nombre debe tener minimo 4 caracteres
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="orden-form">
-          <mat-form-field appearance="outline" class="input-form">
-            <mat-label>Apellidos</mat-label>
-            <input matInput placeholder="Pérez" formControlName="apellidos" [(ngModel)]="vendedor.value.apellidos">
-            <mat-error *ngIf="vendedor.get('apellidos').hasError('pattern') ">
-              Por favor ingrese un nombre válido
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('apellidos').hasError('required')">
-              Los apellidos son <strong>obligatorio</strong>
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('apellidos').hasError('minlength')">
-              Los apellidos debe tener minimo 7 caracteres
-            </mat-error>
-          </mat-form-field>
-          <div class="clearfix"></div>
-          <mat-form-field appearance="outline" class="input-form">
-            <mat-label>Teléfono</mat-label>
-            <input matInput formControlName="telefono" id="nameValue" [(ngModel)]="vendedor.value.telefono">
-            <mat-error *ngIf="vendedor.get('telefono').hasError('pattern') ">
-              Por favor ingrese un teléfono válido
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('telefono').hasError('required')">
-              El teléfono es <strong>obligatoria</strong>
-            </mat-error>
-            <mat-error *ngIf="vendedor.get('telefono').hasError('minlength')">
-              El teléfono debe tener minimo 5 digitos
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="container">
-          <div class="data-form-button">
-            <button type="button" class="btn btn-danger" (click)="cerrar()">Cancelar</button>
-            <div class="clearButton"></div>
-            <button type="submit" class="btn btn-secondary" [disabled]="vendedor.invalid">Modificar
-              Vendedor</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <!--Editar vendedor-->
-
-
-  <div class="container" class="animacionForm" *ngIf="eliminarV"> <!--Eliminar Vendedor-->
-    <div id="container-form">
-      <form class="data-form mt-3" novalidate (ngSubmit)="eliminarVen()" [formGroup]="vendedorE">
-        <h6>Eliminar Vendedor</h6>
-        <div class="container">
-          <div class="orden-form">
-            <mat-form-field appearance="outline" class="input-form">
-              <mat-label>Cédula del Vendedor</mat-label>
-              <input type="text" matInput formControlName="cedula">
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="input-form">
-              <mat-label>Nombres del Vendedor</mat-label>
-              <input type="text" matInput formControlName="nombres">
-            </mat-form-field>
-          </div>
-          <div class="clearfix"></div>
-          <div class="orden-form">
-            <mat-form-field appearance="outline" class="input-form">
-              <mat-label>Apellidos del Vendedor</mat-label>
-              <input type="text" matInput formControlName="apellidos">
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="input-form">
-              <mat-label>teléfono</mat-label>
-              <input type="text" matInput formControlName="telefono">
-            </mat-form-field>
-          </div>
-          <div class="container">
-            <div class="data-form-button">
-              <button type="button" class="btn btn-danger" (click)="cerrar1()">Cancelar</button>
-              <div class="clearButton"></div>
-              <button type="submit" type="submit" class="btn btn-secondary">Eliminar Vendedor
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <!--Eliminar Vendedor-->
-
 </div>
 
 <!-- Modal Agregar Vendedor-->
@@ -187,7 +64,28 @@
       <div class="modal-body" id="body-modal" class="div-modal">
         <app-vendedor-registrer (emitUpdate)="actualizarV($event)"></app-vendedor-registrer> 
       </div>
-    
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Vendedor-->
+<div class="modal fade" id="eliminarVendedor" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" id="body-modal" class="div-modal">
+        <app-vendedor-delete [data]="vendedorDelete" (emitUpdate)="actualizarV($event)"></app-vendedor-delete>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Vendedor-->
+<div class="modal fade" id="editarVendedor" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" id="body-modal" class="div-modal">
+        <app-vendedor-editar [data]="vendedorEdit" (emitUpdate)="actualizarV($event)"></app-vendedor-editar>
+      </div>
     </div>
   </div>
 </div>
