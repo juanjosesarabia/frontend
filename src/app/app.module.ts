@@ -55,6 +55,7 @@ import { SearchLogPipe } from './pipe/search-log.pipe';
 import { IngresoEliminarComponent } from './componentes/ingresos/ingreso-eliminar/ingreso-eliminar.component';
 import { VendedorDeleteComponent } from './componentes/vendedores/vendedor-delete/vendedor-delete.component';
 import { VendedorEditarComponent } from './componentes/vendedores/vendedor-editar/vendedor-editar.component';
+import { ListToProductDeleteComponent } from './componentes/productos/list-to-product-delete/list-to-product-delete.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { VendedorEditarComponent } from './componentes/vendedores/vendedor-edita
     IngresoEliminarComponent,
     VendedorDeleteComponent,
     VendedorEditarComponent,
+    ListToProductDeleteComponent,
 
   ],
   imports: [

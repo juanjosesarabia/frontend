@@ -1,6 +1,106 @@
-<div class="div-contenido">
-  <h4>Registrar Producto</h4>
-  <mat-divider class="mb-3"></mat-divider>
-   
-  
+<div class="container">
+  <div class="div-header">
+    <h4>Registrar Producto</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <form class="data-form mt-3" novalidate #formDirective="ngForm" (ngSubmit)="registrarProducto(formDirective)" id="registrarProducto" [formGroup]="producto">
+    <div class="content">
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Nombre producto</mat-label>
+        <input matInput formControlName="nombre" placeholder="Ingrese nombre producto" [(ngModel)]="producto.value.nombre">
+        <mat-icon matSuffix>production_quantity_limits</mat-icon>
+        <mat-error *ngIf="producto.get('nombre').hasError('pattern') ">
+          Por favor ingrese un nombre válido
+        </mat-error>
+        <mat-error *ngIf="producto.get('nombre').hasError('required')">
+          El nombre es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="producto.get('nombre').hasError('minlength')">
+          La nombre debe tener minimo 3 digitos
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Descripción</mat-label>
+        <input matInput placeholder="Color rojo" formControlName="descripcion" [(ngModel)]="producto.value.descripcion">
+        <mat-icon matSuffix>description</mat-icon>
+        <mat-error *ngIf="producto.get('descripcion').hasError('pattern') ">
+          Por favor ingrese una descripción válida
+        </mat-error>
+        <mat-error *ngIf="producto.get('descripcion').hasError('required')">
+         La descripción  es <strong>obligatoria</strong>
+        </mat-error>
+        <mat-error *ngIf="producto.get('descripcion').hasError('minlength')">
+          La descripción  debe tener minimo 4 caracteres
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Devolución</mat-label>
+        <mat-select formControlName="riesgo" [(ngModel)]="producto.value.riesgo">
+          <mat-option  value="si">Si</mat-option>
+          <mat-option  value="no">No</mat-option>
+        </mat-select>
+        <mat-error *ngIf="producto.get('riesgo').hasError('required')">
+          La devolución es <strong>obligatoria</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Código de barra</mat-label>
+        <input matInput placeholder="547557" formControlName="codigoBarra" [(ngModel)]="producto.value.codigoBarra">
+        <mat-icon matSuffix>calendar_view_month</mat-icon>
+        <mat-error *ngIf="producto.get('codigoBarra').hasError('pattern') ">
+          Por favor ingrese un código de barra válido
+        </mat-error>
+        <mat-error *ngIf="producto.get('codigoBarra').hasError('required')">
+          El código de barra es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="producto.get('codigoBarra').hasError('minlength')">
+          El código de barra debe tener minimo 3 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Cantidad</mat-label>
+        <input matInput  formControlName="cantidadUnitaria" [(ngModel)]="producto.value.cantidadUnitaria">
+        <mat-icon matSuffix>article</mat-icon>
+        <mat-error *ngIf="producto.get('cantidadUnitaria').hasError('pattern') ">
+          Por favor ingrese una cantidad unitaria.
+        </mat-error>
+        <mat-error *ngIf="producto.get('cantidadUnitaria').hasError('required')">
+          La cantidad es <strong>obligatoria</strong>
+        </mat-error>
+        <mat-error *ngIf="producto.get('cantidadUnitaria').hasError('minlength')">
+          La cantidad debe tener minimo 1 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-form">
+        <mat-label>Número de acta</mat-label>
+        <input matInput formControlName="numero_acta" [(ngModel)]="producto.value.numero_acta">
+        <mat-icon matSuffix>assignment</mat-icon>
+        <mat-error *ngIf="producto.get('numero_acta').hasError('pattern') ">
+          Por favor ingrese un número de acta válido
+        </mat-error>
+        <mat-error *ngIf="producto.get('numero_acta').hasError('required')">
+          El número de acta es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="producto.get('numero_acta').hasError('minlength')">
+          El número de acta debe tener minimo 3 caracteres
+        </mat-error>
+      </mat-form-field>
+ 
+    </div>
+    <div class="div-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal" #closet (click)="clean(formDirective)">Cancelar</button>
+      <button type="submit" class="btn btn-secondary" [disabled]="producto.invalid">Registrar Producto</button>
+    </div>
+  </form>
+
 </div>

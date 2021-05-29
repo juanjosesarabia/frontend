@@ -11,23 +11,15 @@ import { DataDashboardComponent} from './componentes/data-dashboard/data-dashboa
 import { LogComponent } from './componentes/log/log.component';
 //Importar el guardian de rutas
  import { GuardianGuard } from "./guardian/guardian.guard";
-import { UsuarioRegisComponent } from './componentes/usuarios/usuario-regis/usuario-regis.component';
 import { UsuarioPadreComponent } from './componentes/usuarios/usuario-padre/usuario-padre.component';
 import { UsuarioEditComponent } from './componentes/usuarios/usuario-edit/usuario-edit.component';
 import { UsuarioSearchComponent } from './componentes/usuarios/usuario-search/usuario-search.component';
 import { ProductoPadreComponent } from './componentes/productos/producto-padre/producto-padre.component';
-import { ProductoSearchComponent } from './componentes/productos/producto-search/producto-search.component';
-import { ProductoRegistrerComponent } from './componentes/productos/producto-registrer/producto-registrer.component';
-import { ProductoEditComponent } from './componentes/productos/producto-edit/producto-edit.component';
-import { ProductoDeleteComponent } from './componentes/productos/producto-delete/producto-delete.component';
 import { ProductoListComponent } from './componentes/productos/producto-list/producto-list.component';
 import { VendedorPadreComponent } from './componentes/vendedores/vendedor-padre/vendedor-padre.component';
-import { VendedorRegistrerComponent } from './componentes/vendedores/vendedor-registrer/vendedor-registrer.component';
 import { VendedorEditComponent } from './componentes/vendedores/vendedor-edit/vendedor-edit.component';
 import { VendedorListComponent } from './componentes/vendedores/vendedor-list/vendedor-list.component';
 import { IngresoPadreComponent } from './componentes/ingresos/ingreso-padre/ingreso-padre.component';
-import { IngresoRegistrerComponent } from './componentes/ingresos/ingreso-registrer/ingreso-registrer.component';
-import { IngresoEditComponent } from './componentes/ingresos/ingreso-edit/ingreso-edit.component';
 import { IngresoSearchComponent } from './componentes/ingresos/ingreso-search/ingreso-search.component';
 import { IngresoListComponent } from './componentes/ingresos/ingreso-list/ingreso-list.component';
 import { IngresoDeleteComponent } from './componentes/ingresos/ingreso-delete/ingreso-delete.component';
@@ -37,6 +29,7 @@ import { SalidaRegistrerDesComponent } from './componentes/salidas/salida-regist
 import { SalidaSearchComponent } from './componentes/salidas/salida-search/salida-search.component';
 import { SalidaDeleteComponent } from './componentes/salidas/salida-delete/salida-delete.component';
 import { SalidaListComponent } from './componentes/salidas/salida-list/salida-list.component';
+import { ListToProductDeleteComponent } from './componentes/productos/list-to-product-delete/list-to-product-delete.component';
 
 
 //Array de rutas
@@ -54,11 +47,10 @@ const appRoutes: Routes =[
 			},
 			{path:'producto',component:ProductoPadreComponent,canActivate:[GuardianGuard],
 		     children:[
-				 {path:'',component:ProductoRegistrerComponent,canActivate:[GuardianGuard]},
-				 {path:'edit-producto',component:ProductoEditComponent,canActivate:[GuardianGuard]},
-				 {path:'search-producto',component:ProductoSearchComponent,canActivate:[GuardianGuard]},
-				 {path:'delete-producto',component:ProductoDeleteComponent,canActivate:[GuardianGuard]},
-				 {path:'list-producto',component:ProductoListComponent,canActivate:[GuardianGuard]},				
+				{path:'',component:ProductoListComponent,canActivate:[GuardianGuard]},
+				 {path:'list-delete-producto',component:ListToProductDeleteComponent,canActivate:[GuardianGuard]},
+				
+				 				
 			 ],
 			},
 			{path:'vendedor',component:VendedorPadreComponent,canActivate:[GuardianGuard],

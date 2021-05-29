@@ -1,0 +1,19 @@
+.div-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 9px;
+}
+.div-header{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding-top: 20px;
+}
+.div-footer button {
+    margin-left: 5px;
+}
+.mat-form-field{
+    width : 100% !important;
+}
+

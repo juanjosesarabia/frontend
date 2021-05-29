@@ -49,3 +49,5 @@ body::-webkit-scrollbar {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0.45rem 0.45rem 0rem 0rem;
 }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; }

@@ -1,12 +1,21 @@
 <div class="div-contenido">
-    <h4>Lista de Productos</h4>
+    <h4>Gestionar Productos</h4>
     <mat-divider></mat-divider>
       
     <div class="container table-responsive mt-2 ">
+        <div >     
+            <form class="div-search-button" >
+              <mat-form-field id="mat-fiel">
+                <mat-label>Buscar producto</mat-label>
+                <input matInput placeholder="Ingrese cédula del vendedor" [(ngModel)]="filtro" name="filtro">
+              </mat-form-field>       
+              <button class="btn btn-success" title="Agregar Producto" data-toggle="modal" data-target="#agregarProducto" >
+                <mat-icon >add_box</mat-icon>
+               </button>
+            </form>
+          </div>
       <table class="table table-bordered  table-responsive">
-
           <thead>
-
               <tr>
                   <th scope="col" class="anchotd">Producto</th>
                   <th scope="col" class="anchotd">Codigo Barra</th>
@@ -17,12 +26,13 @@
                   <th scope="col" class="anchotd">Apellidos</th>
                   <th scope="col" class="anchot">Fecha Ingreso</th>
                   <th scope="col" class="anchot">N° Acta</th>
+                  <th scope="col" class="anchot">Acciones</th>
               </tr>
           </thead>
           <tbody>
               <div *ngIf="data; then data else sinData"></div>
               <ng-template #data>
-                  <tr *ngFor="let fila of datos | paginate:page_size:page_number">
+                  <tr *ngFor="let fila of datos|search:filtro  | paginate:page_size:page_number">
                       <td >{{fila.nombre}}</td>
                       <td>{{fila.codigoBarra}}</td>
                       <td>{{fila.cantidadUnitaria}}</td>
@@ -32,6 +42,14 @@
                       <td >{{fila.apellidos}}</td>
                       <td >{{fila.fechaIngreso}}</td>
                       <td >{{fila.numero_acta}}</td>
+                      <td >
+                        <button class="btn btn-warning editButton" title="Editar Producto" data-toggle="modal" data-target="#editarProducto" (click)="editProduct(fila)">
+                          <mat-icon class="edIcon">edit</mat-icon>
+                        </button>
+                        <button class="btn btn-danger editButton" title="Eliminar Producto" data-toggle="modal" data-target="#eliminarProducto" (click)="deleteProduct(fila)">
+                          <mat-icon class="edIcon">delete</mat-icon>
+                        </button>
+                      </td>
                       
                   </tr>
               </ng-template>
@@ -56,4 +74,38 @@
   <ngx-spinner type="ball-spin-clockwise">
     <p style="font-size: 20px; color: white">Cargando...</p>
 </ngx-spinner>
+<ngx-alerts></ngx-alerts>
 
+<!-- Modal Agregar producto-->
+<div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body" id="body-modal" class="div-modal">
+         <app-producto-registrer (emitUpdate)="actualizarP($event)"></app-producto-registrer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Eliminar producto-->
+<div class="modal fade" id="eliminarProducto" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body" id="body-modal" class="div-modal">
+            <app-producto-delete [data]="productDelete" (emitUpdate)="actualizarP($event)"></app-producto-delete>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Editar producto-->
+  <div class="modal fade" id="editarProducto" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body" id="body-modal" class="div-modal">
+         <app-producto-edit [data]="productEdit" (emitUpdate)="actualizarP($event)"></app-producto-edit>
+        </div>
+      </div>
+    </div>
+  </div>
