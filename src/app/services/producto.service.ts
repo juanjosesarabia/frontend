@@ -45,7 +45,12 @@ export class ProductoService{
      editProduct(body):Observable<any>{//editar Producto
         return this._http.put(this.url+"editProducto",body,{headers:this.headers});
     }
-     
+    getProductosDelete():Observable<any>{  // Obtener productos eliminados
+        return this._http.get(this.url+"getsProducDelete",{headers:this.headers});
+     }
+     restoreProducto(body):Observable<any>{   // Restaurar producto
+        return this._http.post(this.url+"restoreProducto",body,{headers:this.headers});    
+    }
    
 
 

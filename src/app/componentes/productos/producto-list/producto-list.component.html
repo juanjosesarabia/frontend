@@ -30,8 +30,8 @@
               </tr>
           </thead>
           <tbody>
-              <div *ngIf="data; then data else sinData"></div>
-              <ng-template #data>
+              <div *ngIf="data; then data1 else sinData"></div>
+              <ng-template #data1>
                   <tr *ngFor="let fila of datos|search:filtro  | paginate:page_size:page_number">
                       <td >{{fila.nombre}}</td>
                       <td>{{fila.codigoBarra}}</td>
@@ -55,7 +55,7 @@
               </ng-template>
               <ng-template #sinData>
                   <tr>
-                      <td colspan="9">Sin datos</td>
+                      <td colspan="10">Sin datos</td>
                   </tr>
               </ng-template>
 
